@@ -9,12 +9,19 @@ Sistem pendaftaran event berbasis Laravel yang memungkinkan pendaftaran multiple
 - Dashboard admin untuk melihat data pendaftar
 - Export data pendaftar
 - Autentikasi admin
+- Landing page modern dengan hero section
+- Halaman detail event yang interaktif
+- Sistem timeline event
+- FAQ section
 
 ## Teknologi
 
 - Laravel 10
 - MySQL
-- TailwindCSS
+- TailwindCSS dengan custom color palette:
+  - Primary: #F0E7CC (Cream)
+  - Secondary: #345A44 (Forest Green)
+  - Accent: #B62127 (Deep Red)
 - Alpine.js
 - Laravel Breeze (untuk autentikasi)
 
@@ -24,6 +31,8 @@ Sistem pendaftaran event berbasis Laravel yang memungkinkan pendaftaran multiple
 - `resources/views/layouts/app.blade.php` - Layout utama aplikasi
 - `resources/views/partials/header.blade.php` - Partial header
 - `resources/views/partials/footer.blade.php` - Partial footer
+- `resources/views/partials/hero.blade.php` - Hero section
+- `resources/views/event-details.blade.php` - Halaman detail event
 - `resources/views/home.blade.php` - Halaman form pendaftaran
 - `resources/views/admin/dashboard.blade.php` - Dashboard admin
 - `resources/views/admin/show.blade.php` - Detail pendaftar
@@ -42,6 +51,38 @@ Sistem pendaftaran event berbasis Laravel yang memungkinkan pendaftaran multiple
 - `database/seeders/` - Seeder untuk data awal
   - `AdminUserSeeder.php` - Seeder untuk admin default
   - `DatabaseSeeder.php` - Seeder utama
+
+## Detail Event Night Run 2025
+
+### Mekanisme Lomba
+- Jalur: 5km dengan 3 waterstation
+- Kategori: Putra dan Putri
+- Sistem: Timing chip dengan hasil berdasarkan waktu tercepat
+- Peralatan: Jersey wajib dipakai, headlamp disarankan
+
+### Timeline Event
+- Periode Pendaftaran: 1-30 Januari 2025
+- Pengambilan Race Pack: 5 Februari 2025
+- Hari Event: 10 Februari 2025
+
+### Pendaftaran
+- Via akun official atau website resmi
+- Data yang diperlukan:
+  - Data pribadi (nama, alamat, kontak)
+  - Ukuran jersey
+  - Nomor rekening Bank Jatim
+- Biaya: Rp 150.000 (termasuk jersey & refreshment)
+
+### Hadiah Lomba
+- Kategori Putra:
+  - Juara I: Rp 1.000.000
+  - Juara II: Rp 750.000
+  - Juara III: Rp 500.000
+- Kategori Putri:
+  - Juara I: Rp 1.000.000
+  - Juara II: Rp 750.000
+  - Juara III: Rp 500.000
+- Sertifikat: 500 finisher pertama
 
 ## Instalasi
 
@@ -96,10 +137,14 @@ php artisan serve
    - Setup login untuk admin
 
 3. **Frontend**
-   - Implementasi TailwindCSS
+   - Implementasi TailwindCSS dengan custom color palette
    - Setup layout dan partials
    - Form pendaftaran dengan multiple entries
    - Validasi form client-side dan server-side
+   - Hero section yang modern
+   - Halaman detail event yang interaktif
+   - Timeline event
+   - FAQ section
 
 4. **Backend**
    - Validasi data pendaftar

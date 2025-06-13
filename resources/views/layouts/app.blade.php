@@ -17,9 +17,13 @@
     <body class="font-sans antialiased">
         @include('partials.header')
 
-        <div class="min-h-screen bg-gray-100">
+        @if(request()->routeIs('home'))
+            @include('partials.hero')
+        @endif
+
+        <div class="min-h-screen bg-gray-50">
             <!-- Page Content -->
-            <main>
+            <main class="py-12">
                 @yield('content')
             </main>
         </div>

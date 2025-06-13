@@ -19,3 +19,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/registrations/{registration}', [AdminController::class, 'show'])->name('admin.registrations.show');
     Route::get('/admin/export', [AdminController::class, 'export'])->name('admin.export');
 });
+
+Route::get('/event-details', function () {
+    return view('event-details');
+})->name('event.details');
