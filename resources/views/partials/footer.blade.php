@@ -1,6 +1,6 @@
 <!-- Footer Section -->
 <footer class="bg-secondary text-primary">
-    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <!-- Brand Section -->
             <div class="col-span-1 md:col-span-2">
@@ -59,9 +59,9 @@
         </div>
 
         <!-- Copyright -->
-        <div class="mt-8 pt-8 border-t border-primary/20">
+        <div class="mt-6 pt-6 border-t border-primary/20">
             <p class="text-center text-primary/80 text-sm">
-                &copy; {{ date('Y') }} Pendaftaran Event. All rights reserved.
+            &copy; {{ date('Y') }} Pendaftaran Event. All rights reserved.
             </p>
         </div>
     </div>

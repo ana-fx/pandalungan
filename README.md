@@ -1,171 +1,122 @@
-# Pandulungan - Sistem Pendaftaran Event
+# Pandulungan - Night Run Event Registration System 🏃‍♂️🏃‍♀️
 
-Sistem pendaftaran event berbasis Laravel yang memungkinkan pendaftaran multiple peserta dalam satu form.
+Welcome to **Pandulungan** — a modern, robust, and user-friendly event registration platform built for the Night Run 2025! This system is designed to make mass registration, payment, and admin management a breeze, whether you're a participant or an event organizer.
 
-## Fitur
+---
 
-- Form pendaftaran dengan multiple peserta
-- Validasi data pendaftar (NIK, Email, dll)
-- Dashboard admin untuk melihat data pendaftar
-- Export data pendaftar
-- Autentikasi admin
-- Landing page modern dengan hero section
-- Halaman detail event yang interaktif
-- Sistem timeline event
-- FAQ section
+## 🌟 What's New (June 14, 2025)
 
-## Teknologi
+- **Multi-Peserta Registration:**
+  - Form pendaftaran kini mendukung 1-5 peserta sekaligus dalam satu kali submit.
+  - Validasi lengkap di frontend (HTML5) dan backend (Laravel) untuk NIK, email, nomor telepon, tanggal lahir, dsb.
+  - Input hanya menerima format yang benar (angka, email, tanggal, dsb).
+- **Data Peserta Tersimpan Rapi:**
+  - Semua data peserta kini disimpan di tabel `checkout_participants` dan langsung terhubung ke order/checkout.
+- **Admin Dashboard & Order Management:**
+  - Dashboard admin, detail order, dan edit order kini menampilkan SEMUA peserta per order, bukan hanya peserta pertama.
+  - Tampilan peserta di dashboard, detail, dan edit order sudah modern, responsif, dan mudah dibaca.
+  - Admin dapat mengedit data seluruh peserta dalam satu order dengan mudah.
+- **UI/UX & Logging:**
+  - Semua halaman admin dan publik kini lebih modern, mobile-friendly, dan informatif.
+  - Penanganan error dan logging backend lebih jelas untuk debugging.
+- **Controller & View Update:**
+  - Semua controller dan view sudah disesuaikan untuk mendukung multi-peserta dan relasi data yang benar.
 
-- Laravel 10
-- MySQL
-- TailwindCSS dengan custom color palette:
-  - Primary: #F0E7CC (Cream)
-  - Secondary: #345A44 (Forest Green)
-  - Accent: #B62127 (Deep Red)
-- Alpine.js
-- Laravel Breeze (untuk autentikasi)
+---
 
-## Struktur Aplikasi
+## 🚀 Fitur Utama
 
-### Views
-- `resources/views/layouts/app.blade.php` - Layout utama aplikasi
-- `resources/views/partials/header.blade.php` - Partial header
-- `resources/views/partials/footer.blade.php` - Partial footer
-- `resources/views/partials/hero.blade.php` - Hero section
-- `resources/views/event-details.blade.php` - Halaman detail event
-- `resources/views/home.blade.php` - Halaman form pendaftaran
-- `resources/views/admin/dashboard.blade.php` - Dashboard admin
-- `resources/views/admin/show.blade.php` - Detail pendaftar
+- **Pendaftaran Multi Peserta:**
+  - Satu form, hingga 5 peserta sekaligus, validasi otomatis.
+- **Checkout & Pembayaran:**
+  - Ringkasan pendaftaran, instruksi pembayaran, upload bukti, dan status pembayaran.
+- **Dashboard Admin:**
+  - Statistik peserta, pendapatan, status order, dan export data.
+  - Lihat, edit, dan kelola semua peserta dalam satu order.
+- **Modern UI:**
+  - Menggunakan TailwindCSS, layout responsif, dan komponen interaktif.
+- **Keamanan & Logging:**
+  - Validasi ganda, autentikasi admin, dan logging proses penting.
 
-### Controllers
-- `app/Http/Controllers/RegistrationController.php` - Menangani pendaftaran peserta
-- `app/Http/Controllers/AdminController.php` - Menangani dashboard admin
-- `app/Http/Controllers/Auth/AuthenticatedSessionController.php` - Menangani autentikasi
+---
 
-### Models
-- `app/Models/Registration.php` - Model untuk data pendaftaran
-- `app/Models/User.php` - Model untuk data admin
+## 🏁 Event Night Run 2025
+- **Jalur:** 5km, 3 waterstation
+- **Kategori:** Putra & Putri
+- **Biaya:** Rp 150.000 (jersey & refreshment)
+- **Hadiah:** Total jutaan rupiah & sertifikat untuk 500 finisher pertama
+- **Timeline:**
+  - Pendaftaran: 1-30 Januari 2025
+  - Race Pack: 5 Februari 2025
+  - Event: 10 Februari 2025
 
-### Database
-- `database/migrations/` - Migrasi database
-- `database/seeders/` - Seeder untuk data awal
-  - `AdminUserSeeder.php` - Seeder untuk admin default
-  - `DatabaseSeeder.php` - Seeder utama
+---
 
-## Detail Event Night Run 2025
+## 📦 Instalasi Cepat
 
-### Mekanisme Lomba
-- Jalur: 5km dengan 3 waterstation
-- Kategori: Putra dan Putri
-- Sistem: Timing chip dengan hasil berdasarkan waktu tercepat
-- Peralatan: Jersey wajib dipakai, headlamp disarankan
+1. **Clone & Install**
+   ```bash
+   git clone <repository-url>
+   cd pandulungan
+   composer install
+   npm install
+   ```
+2. **Setup Environment**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   # Edit .env untuk database Anda
+   ```
+3. **Migrate & Seed**
+   ```bash
+   php artisan migrate --seed
+   ```
+4. **Run the App**
+   ```bash
+   npm run dev
+   php artisan serve
+   ```
 
-### Timeline Event
-- Periode Pendaftaran: 1-30 Januari 2025
-- Pengambilan Race Pack: 5 Februari 2025
-- Hari Event: 10 Februari 2025
+---
 
-### Pendaftaran
-- Via akun official atau website resmi
-- Data yang diperlukan:
-  - Data pribadi (nama, alamat, kontak)
-  - Ukuran jersey
-  - Nomor rekening Bank Jatim
-- Biaya: Rp 150.000 (termasuk jersey & refreshment)
+## 🛠️ Struktur & Teknologi
+- **Laravel 10** (Backend, Auth, Validation)
+- **MySQL** (Database)
+- **TailwindCSS** (UI/UX)
+- **Alpine.js** (Interaktivitas ringan)
+- **Laravel Breeze** (Auth)
+- **Custom Models:**
+  - `Checkout`, `CheckoutParticipant`, `User`
+- **Views:**
+  - `home.blade.php` (Form pendaftaran)
+  - `admin/dashboard.blade.php` (Dashboard admin)
+  - `admin/order_detail.blade.php` (Detail order multi peserta)
+  - `admin/edit_order.blade.php` (Edit order multi peserta)
 
-### Hadiah Lomba
-- Kategori Putra:
-  - Juara I: Rp 1.000.000
-  - Juara II: Rp 750.000
-  - Juara III: Rp 500.000
-- Kategori Putri:
-  - Juara I: Rp 1.000.000
-  - Juara II: Rp 750.000
-  - Juara III: Rp 500.000
-- Sertifikat: 500 finisher pertama
+---
 
-## Instalasi
+## 👤 Akun Admin Default
+- **Email:** admin@example.com
+- **Password:** password
 
-1. Clone repository
-```bash
-git clone <repository-url>
-cd pandulungan
-```
+---
 
-2. Install dependencies
-```bash
-composer install
-npm install
-```
-
-3. Setup environment
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-4. Konfigurasi database di file `.env`
-```env
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=pandulungan
-DB_USERNAME=root
-DB_PASSWORD=
-```
-
-5. Migrasi dan seed database
-```bash
-php artisan migrate --seed
-```
-
-6. Jalankan aplikasi
-```bash
-npm run dev
-php artisan serve
-```
-
-## Konfigurasi yang Sudah Dilakukan
-
-1. **Database**
-   - Migrasi untuk tabel registrations
-   - Seeder untuk admin default
-
-2. **Autentikasi**
-   - Implementasi Laravel Breeze
-   - Kustomisasi middleware admin
-   - Setup login untuk admin
-
-3. **Frontend**
-   - Implementasi TailwindCSS dengan custom color palette
-   - Setup layout dan partials
-   - Form pendaftaran dengan multiple entries
-   - Validasi form client-side dan server-side
-   - Hero section yang modern
-   - Halaman detail event yang interaktif
-   - Timeline event
-   - FAQ section
-
-4. **Backend**
-   - Validasi data pendaftar
-   - Penanganan multiple entries dalam satu form
-   - Export data pendaftar
-   - Dashboard admin
-
-## Akun Default
-
-**Admin**
-- Email: admin@example.com
-- Password: password
-
-## Kontribusi
-
-1. Fork repository
+## 🤝 Kontribusi
+1. Fork repo ini
 2. Buat branch baru (`git checkout -b fitur-baru`)
-3. Commit perubahan (`git commit -m 'Menambah fitur baru'`)
+3. Commit perubahan (`git commit -m 'Tambah fitur baru'`)
 4. Push ke branch (`git push origin fitur-baru`)
 5. Buat Pull Request
 
-## License
+---
 
+## 📢 Catatan Kreatif
+- Sistem ini dirancang untuk event lari malam, namun sangat fleksibel untuk event lain yang butuh pendaftaran massal.
+- Semua proses pendaftaran, pembayaran, dan manajemen peserta kini jauh lebih mudah, cepat, dan transparan.
+- UI dibuat agar nyaman diakses dari HP maupun desktop.
+- Setiap perubahan hari ini difokuskan pada kemudahan admin dan pengalaman peserta yang lebih baik.
+
+---
+
+## 📄 License
 [MIT License](LICENSE.md)

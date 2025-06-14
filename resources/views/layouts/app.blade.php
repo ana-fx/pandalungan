@@ -14,19 +14,17 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased min-h-screen flex flex-col">
         @include('partials.header')
 
         @if(request()->routeIs('home'))
             @include('partials.hero')
         @endif
 
-        <div class="min-h-screen bg-gray-50">
             <!-- Page Content -->
-            <main class="py-12">
+        <main class="flex-grow">
                 @yield('content')
             </main>
-        </div>
 
         @include('partials.footer')
         @stack('scripts')
