@@ -9,6 +9,8 @@ use App\Models\Checkout;
 use Carbon\Carbon;
 use App\Models\Payment;
 use Illuminate\Support\Facades\Log;
+use Twilio\Rest\Client;
+use App\Jobs\SendWhatsappNotification;
 
 class RegistrationController extends Controller
 {
@@ -27,7 +29,7 @@ class RegistrationController extends Controller
             'registrants' => ['required', 'array', 'min:1'],
             'registrants.*.nik' => ['required', 'string', 'size:16', 'distinct', 'unique:registrations,nik'],
             'registrants.*.full_name' => ['required', 'string', 'max:255'],
-            'registrants.*.whatsapp_number' => ['required', 'string', 'max:20'],
+            'registrants.*.whatsapp_number' => ['required', 'string', 'max:20', 'distinct', 'unique:registrations,whatsapp_number'],
             'registrants.*.email' => ['required', 'email', 'distinct', 'unique:registrations,email'],
             'registrants.*.address' => ['required', 'string'],
             'registrants.*.date_of_birth' => ['required', 'date'],
@@ -39,6 +41,8 @@ class RegistrationController extends Controller
         ], [
             'registrants.*.nik.unique' => 'NIK sudah terdaftar.',
             'registrants.*.nik.distinct' => 'NIK tidak boleh sama dengan pendaftar lain.',
+            'registrants.*.whatsapp_number.unique' => 'Nomor WhatsApp sudah terdaftar.',
+            'registrants.*.whatsapp_number.distinct' => 'Nomor WhatsApp tidak boleh sama dengan pendaftar lain.',
             'registrants.*.email.unique' => 'Email sudah terdaftar.',
             'registrants.*.email.distinct' => 'Email tidak boleh sama dengan pendaftar lain.',
         ]);
@@ -71,7 +75,7 @@ class RegistrationController extends Controller
             'registrations' => ['required', 'array', 'min:1', 'max:5'],
             'registrations.*.nik' => ['required', 'string', 'size:16', 'distinct', 'unique:registrations,nik'],
             'registrations.*.full_name' => ['required', 'string', 'max:255'],
-            'registrations.*.whatsapp_number' => ['required', 'string', 'max:20'],
+            'registrations.*.whatsapp_number' => ['required', 'string', 'max:20', 'distinct', 'unique:registrations,whatsapp_number'],
             'registrations.*.email' => ['required', 'email', 'distinct', 'unique:registrations,email'],
             'registrations.*.address' => ['required', 'string'],
             'registrations.*.date_of_birth' => ['required', 'date'],
@@ -85,6 +89,8 @@ class RegistrationController extends Controller
         ], [
             'registrations.*.nik.unique' => 'NIK sudah terdaftar.',
             'registrations.*.nik.distinct' => 'NIK tidak boleh sama dengan pendaftar lain.',
+            'registrations.*.whatsapp_number.unique' => 'Nomor WhatsApp sudah terdaftar.',
+            'registrations.*.whatsapp_number.distinct' => 'Nomor WhatsApp tidak boleh sama dengan pendaftar lain.',
             'registrations.*.email.unique' => 'Email sudah terdaftar.',
             'registrations.*.email.distinct' => 'Email tidak boleh sama dengan pendaftar lain.',
         ]);
@@ -108,6 +114,28 @@ class RegistrationController extends Controller
             }
             DB::commit();
             Log::info('Transaksi commit, redirect ke checkout', ['unique_id' => $checkout->unique_id]);
+
+            // --- Kirim WhatsApp via Queue ke semua peserta ---
+            try {
+                $url = route('checkout.public', $checkout->unique_id);
+                $message = "Terima kasih sudah mendaftar Night Run 2025!\n" .
+                    "Order: {$checkout->order_number}\n" .
+                    "Total: Rp " . number_format($checkout->total_amount, 0, ',', '.') . "\n" .
+                    "Status: {$checkout->status}\n" .
+                    "Cek detail & upload bukti pembayaran di: {$url}";
+                foreach ($validatedData['registrations'] as $participant) {
+                    $wa = $participant['whatsapp_number'];
+                    if (strpos($wa, '+') !== 0) {
+                        $wa = '+62' . ltrim($wa, '0');
+                    }
+                    $wa = 'whatsapp:' . $wa;
+                    dispatch(new SendWhatsappNotification($wa, $message));
+                }
+            } catch (\Exception $e) {
+                Log::error('Gagal dispatch WhatsApp job: ' . $e->getMessage());
+            }
+            // --- END Kirim WhatsApp via Queue ke semua peserta ---
+
             return redirect()->route('checkout.public', $checkout->unique_id)
                 ->with('success', 'Pendaftaran berhasil! Silakan lakukan pembayaran.');
         } catch (\Exception $e) {

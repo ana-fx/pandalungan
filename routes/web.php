@@ -64,3 +64,8 @@ Route::middleware(['auth', \App\Http\Middleware\AdminMiddleware::class])->prefix
 Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
 Route::post('login', [AuthenticatedSessionController::class, 'store']);
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// Fallback route for 404
+Route::fallback(function () {
+    return response()->view('errors.404', [], 404);
+});

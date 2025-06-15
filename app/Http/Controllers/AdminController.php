@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use App\Exports\ParticipantsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
@@ -24,35 +26,7 @@ class AdminController extends Controller
 
     public function export()
     {
-        $participants = Participant::with(['user', 'payment'])
-            ->get();
-
-        $headers = [
-            'Content-Type' => 'text/csv',
-            'Content-Disposition' => 'attachment; filename="participants.csv"',
-        ];
-
-        $callback = function() use ($participants) {
-            $file = fopen('php://output', 'w');
-
-            // Add headers
-            fputcsv($file, ['Name', 'Email', 'Phone', 'Payment Status', 'Registration Date']);
-
-            // Add data
-            foreach ($participants as $participant) {
-                fputcsv($file, [
-                    $participant->user->name,
-                    $participant->user->email,
-                    $participant->whatsapp_number,
-                    $participant->payment->status ?? 'Unpaid',
-                    $participant->created_at->format('Y-m-d H:i:s')
-                ]);
-            }
-
-            fclose($file);
-        };
-
-        return response()->stream($callback, 200, $headers);
+        return Excel::download(new ParticipantsExport, 'participants.xlsx');
     }
 
     public function updateStatus(Request $request, $id)

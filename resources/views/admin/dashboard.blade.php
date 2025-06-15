@@ -125,8 +125,12 @@
 
                 <!-- Orders Table -->
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="p-6 border-b border-gray-200">
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between p-6 border-b border-gray-200 gap-4">
                         <h3 class="text-lg font-semibold text-gray-900">Daftar Order</h3>
+                        <form method="GET" action="" class="flex items-center gap-2 w-full md:w-auto">
+                            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari order, nama, WhatsApp..." class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-sm" />
+                            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg font-bold shadow hover:bg-green-700 transition text-sm">Cari</button>
+                        </form>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -143,7 +147,7 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 @foreach ($checkouts as $checkout)
-                                    <tr class="hover:bg-gray-50">
+                                    <tr class="hover:bg-green-50 transition">
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $checkout->order_number }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             @if($checkout->participants->count() > 0)
@@ -215,11 +219,14 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-
-                <!-- Pagination -->
-                <div class="mt-6">
-                    {{ $checkouts->links() }}
+                    <div class="p-4 border-t border-gray-100 flex justify-between items-center">
+                        <div class="text-sm text-gray-500">
+                            Menampilkan <span class="font-bold">{{ $checkouts->firstItem() }}</span> - <span class="font-bold">{{ $checkouts->lastItem() }}</span> dari <span class="font-bold">{{ $checkouts->total() }}</span> data
+                        </div>
+                        <div>
+                            {{ $checkouts->appends(request()->query())->links('vendor.pagination.tailwind') }}
+                        </div>
+                    </div>
                 </div>
             </main>
         </div>

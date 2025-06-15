@@ -4,39 +4,80 @@ Welcome to **Pandulungan** — a modern, robust, and user-friendly event registr
 
 ---
 
-## 🌟 What's New (June 14, 2025)
+## 🌟 What's New (Latest Updates)
 
-- **Multi-Peserta Registration:**
-  - Form pendaftaran kini mendukung 1-5 peserta sekaligus dalam satu kali submit.
-  - Validasi lengkap di frontend (HTML5) dan backend (Laravel) untuk NIK, email, nomor telepon, tanggal lahir, dsb.
-  - Input hanya menerima format yang benar (angka, email, tanggal, dsb).
-- **Data Peserta Tersimpan Rapi:**
-  - Semua data peserta kini disimpan di tabel `checkout_participants` dan langsung terhubung ke order/checkout.
-- **Admin Dashboard & Order Management:**
-  - Dashboard admin, detail order, dan edit order kini menampilkan SEMUA peserta per order, bukan hanya peserta pertama.
-  - Tampilan peserta di dashboard, detail, dan edit order sudah modern, responsif, dan mudah dibaca.
-  - Admin dapat mengedit data seluruh peserta dalam satu order dengan mudah.
-- **UI/UX & Logging:**
-  - Semua halaman admin dan publik kini lebih modern, mobile-friendly, dan informatif.
-  - Penanganan error dan logging backend lebih jelas untuk debugging.
-- **Controller & View Update:**
-  - Semua controller dan view sudah disesuaikan untuk mendukung multi-peserta dan relasi data yang benar.
+### WhatsApp Integration & Notifications
+- **Fonnte Integration:**
+  - WhatsApp notifications sent to registrants after successful registration
+  - Background processing using Laravel Queues
+  - Automatic payment reminders and status updates
+  - Admin contact via WhatsApp in footer
+
+### UI/UX Enhancements
+- **Modern Design:**
+  - Clean, transparent header that changes to solid white on scroll
+  - Minimalistic footer with social and WhatsApp links
+  - Two-column login layout with admin info
+  - Creative 404 page with fallback route
+  - Mobile-friendly solid white drawer menu with icons
+- **Event Pages:**
+  - Redesigned hero section with event theme
+  - Modern card layouts for event details
+  - Improved spacing and professional styling
+  - Consistent theming across all pages
+
+### Admin Dashboard Improvements
+- **Enhanced Table Features:**
+  - Search functionality for orders
+  - Pagination with modern Tailwind styling
+  - Excel export with combined data from registrations and checkout_participants
+  - Complete participant information including payment proof and status
+
+### SEO & Performance
+- **Search Engine Optimization:**
+  - Meta tags for better search visibility
+  - Open Graph tags for social media sharing
+  - Twitter Card support
+  - Custom favicon and site icons
+- **Performance:**
+  - Optimized image loading
+  - Efficient queue processing
+  - Responsive design for all devices
+
+### Multi-Peserta Registration:
+- Form pendaftaran mendukung 1-5 peserta sekaligus
+- Validasi lengkap di frontend (HTML5) dan backend (Laravel)
+- Input hanya menerima format yang benar
+- Data peserta tersimpan rapi di tabel `checkout_participants`
 
 ---
 
 ## 🚀 Fitur Utama
 
 - **Pendaftaran Multi Peserta:**
-  - Satu form, hingga 5 peserta sekaligus, validasi otomatis.
+  - Satu form, hingga 5 peserta sekaligus
+  - Validasi otomatis untuk NIK, email, WhatsApp
+  - Background processing untuk notifikasi
 - **Checkout & Pembayaran:**
-  - Ringkasan pendaftaran, instruksi pembayaran, upload bukti, dan status pembayaran.
+  - Ringkasan pendaftaran
+  - Instruksi pembayaran
+  - Upload bukti
+  - Status pembayaran real-time
 - **Dashboard Admin:**
-  - Statistik peserta, pendapatan, status order, dan export data.
-  - Lihat, edit, dan kelola semua peserta dalam satu order.
+  - Statistik peserta dan pendapatan
+  - Manajemen order lengkap
+  - Export data ke Excel
+  - WhatsApp integration
 - **Modern UI:**
-  - Menggunakan TailwindCSS, layout responsif, dan komponen interaktif.
+  - TailwindCSS
+  - Inter font family
+  - Responsive design
+  - Dark/light mode support
 - **Keamanan & Logging:**
-  - Validasi ganda, autentikasi admin, dan logging proses penting.
+  - Validasi ganda
+  - Autentikasi admin
+  - Error handling
+  - Queue monitoring
 
 ---
 
@@ -65,7 +106,7 @@ Welcome to **Pandulungan** — a modern, robust, and user-friendly event registr
    ```bash
    cp .env.example .env
    php artisan key:generate
-   # Edit .env untuk database Anda
+   # Edit .env untuk database dan Fonnte API
    ```
 3. **Migrate & Seed**
    ```bash
@@ -75,6 +116,7 @@ Welcome to **Pandulungan** — a modern, robust, and user-friendly event registr
    ```bash
    npm run dev
    php artisan serve
+   php artisan queue:work
    ```
 
 ---
@@ -83,15 +125,18 @@ Welcome to **Pandulungan** — a modern, robust, and user-friendly event registr
 - **Laravel 10** (Backend, Auth, Validation)
 - **MySQL** (Database)
 - **TailwindCSS** (UI/UX)
-- **Alpine.js** (Interaktivitas ringan)
+- **Alpine.js** (Interaktivitas)
 - **Laravel Breeze** (Auth)
+- **Laravel Excel** (Data Export)
+- **Fonnte** (WhatsApp Integration)
 - **Custom Models:**
   - `Checkout`, `CheckoutParticipant`, `User`
+  - `WhatsAppNotification` (Queue Jobs)
 - **Views:**
-  - `home.blade.php` (Form pendaftaran)
-  - `admin/dashboard.blade.php` (Dashboard admin)
-  - `admin/order_detail.blade.php` (Detail order multi peserta)
-  - `admin/edit_order.blade.php` (Edit order multi peserta)
+  - Modern layouts with SEO optimization
+  - Responsive components
+  - Error pages
+  - Admin dashboard
 
 ---
 
@@ -111,10 +156,11 @@ Welcome to **Pandulungan** — a modern, robust, and user-friendly event registr
 ---
 
 ## 📢 Catatan Kreatif
-- Sistem ini dirancang untuk event lari malam, namun sangat fleksibel untuk event lain yang butuh pendaftaran massal.
-- Semua proses pendaftaran, pembayaran, dan manajemen peserta kini jauh lebih mudah, cepat, dan transparan.
-- UI dibuat agar nyaman diakses dari HP maupun desktop.
-- Setiap perubahan hari ini difokuskan pada kemudahan admin dan pengalaman peserta yang lebih baik.
+- Sistem ini dirancang untuk event lari malam dengan fokus pada user experience
+- Notifikasi WhatsApp otomatis untuk engagement yang lebih baik
+- UI modern dan konsisten di semua halaman
+- SEO optimized untuk visibilitas yang lebih baik
+- Queue system untuk performa yang optimal
 
 ---
 
