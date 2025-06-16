@@ -6,7 +6,20 @@
 <div class="flex flex-col min-h-screen">
     <!-- Prize Section as Hero -->
     <div class="bg-gradient-to-b from-green-200 via-emerald-100 to-white pt-16 pb-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Logo Section -->
+            <div class="flex justify-between items-center gap-16 mb-16">
+                <div class="w-48 h-48 relative">
+                    <img src="{{ asset('images/sayap-jatim.png') }}" alt="Sayap Jatim" class="w-full h-full object-contain">
+                </div>
+                <div class="w-48 h-48 relative">
+                    <img src="{{ asset('images/pandalungan.png') }}" alt="Logo Pandalungan" class="w-full h-full object-contain">
+                </div>
+                <div class="w-48 h-48 relative">
+                    <img src="{{ asset('images/bank-jatim.png') }}" alt="Bank Jatim" class="w-full h-full object-contain">
+                </div>
+            </div>
+
             <div class="text-center mb-16">
                 <span class="text-green-700 text-lg font-bold tracking-wider mb-3 block">PANDALUNGAN FESTIVAL NIGHT RUN 2025</span>
                 <h1 class="text-4xl md:text-6xl font-extrabold text-green-900 mb-4 drop-shadow">Hadiah Juara</h1>
@@ -21,95 +34,156 @@
             </div>
 
             <!-- Hadiah Juara Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Runner Up (2) -->
-                <div class="flex flex-col items-center min-h-[420px] justify-between bg-white/90 rounded-2xl p-8 shadow-lg transition hover:-translate-y-2 hover:shadow-2xl">
-                    <div class="flex flex-col items-center w-full">
-                        <div class="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center border-4 border-white shadow mb-4">
-                            <span class="text-green-700 font-bold text-2xl">2</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <!-- Kategori Putra -->
+                <div class="relative bg-gradient-to-br from-green-50 to-emerald-50 rounded-3xl p-8 shadow-xl transform hover:scale-[1.02] transition-all duration-300">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-green-600 text-white px-8 py-2 rounded-full shadow-lg">
+                        <h3 class="text-xl font-bold">Kategori Putra</h3>
+                    </div>
+                    <div class="mt-8 space-y-6">
+                        <!-- Juara 1 -->
+                        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-l-4 border-green-600 transform hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
+                                        <span class="text-xl font-bold text-white">1</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-green-800">Juara I</h4>
+                                        <p class="text-sm text-green-600">Medali + Hadiah</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-900">Rp 1.000.000</div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="text-4xl mb-2">🥈</span>
-                        <div class="text-2xl font-bold text-green-700 mb-1">Runner Up</div>
-                        <div class="flex items-end justify-center gap-1 mb-3">
-                            <span class="text-lg font-semibold text-green-700">Rp</span>
-                            <span class="text-3xl md:text-4xl font-extrabold text-green-900">750.000</span>
+                        <!-- Juara 2 -->
+                        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-l-4 border-green-500 transform hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                        <span class="text-xl font-bold text-white">2</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-green-800">Juara II</h4>
+                                        <p class="text-sm text-green-600">Medali + Hadiah</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-900">Rp 750.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Juara 3 -->
+                        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-l-4 border-green-400 transform hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-lg">
+                                        <span class="text-xl font-bold text-white">3</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-green-800">Juara III</h4>
+                                        <p class="text-sm text-green-600">Medali + Hadiah</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-900">Rp 500.000</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <ul class="text-green-800/80 text-sm space-y-2 text-center mt-4">
-                        <li>Medali Perak</li>
-                        <li>Sertifikat Juara</li>
-                        <li>Merchandise Exclusive</li>
-                    </ul>
                 </div>
-                <!-- Juara Utama (1) -->
-                <div class="flex flex-col items-center min-h-[420px] justify-between bg-white rounded-2xl p-10 shadow-2xl transition hover:-translate-y-2 hover:shadow-2xl border-2 border-yellow-400">
-                    <div class="flex flex-col items-center w-full">
-                        <div class="w-20 h-20 bg-yellow-400 rounded-full flex items-center justify-center border-4 border-white shadow mb-4">
-                            <span class="text-green-900 font-bold text-3xl">1</span>
+
+                <!-- Kategori Putri -->
+                <div class="relative bg-gradient-to-br from-emerald-50 to-green-50 rounded-3xl p-8 shadow-xl transform hover:scale-[1.02] transition-all duration-300">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-emerald-600 text-white px-8 py-2 rounded-full shadow-lg">
+                        <h3 class="text-xl font-bold">Kategori Putri</h3>
+                    </div>
+                    <div class="mt-8 space-y-6">
+                        <!-- Juara 1 -->
+                        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-l-4 border-green-600 transform hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-600 to-green-700 rounded-full flex items-center justify-center shadow-lg">
+                                        <span class="text-xl font-bold text-white">1</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-green-800">Juara I</h4>
+                                        <p class="text-sm text-green-600">Medali + Hadiah</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-900">Rp 1.000.000</div>
+                                </div>
+                            </div>
                         </div>
-                        <span class="text-5xl mb-2">🥇</span>
-                        <div class="text-3xl font-bold text-green-700 mb-1">Juara Utama</div>
-                        <div class="flex items-end justify-center gap-1 mb-3">
-                            <span class="text-lg font-semibold text-green-700">Rp</span>
-                            <span class="text-4xl md:text-5xl font-extrabold text-green-900">1.000.000</span>
+                        <!-- Juara 2 -->
+                        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-l-4 border-green-500 transform hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
+                                        <span class="text-xl font-bold text-white">2</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-green-800">Juara II</h4>
+                                        <p class="text-sm text-green-600">Medali + Hadiah</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-900">Rp 750.000</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Juara 3 -->
+                        <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border-l-4 border-green-400 transform hover:-translate-y-1 transition-all duration-300">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-lg">
+                                        <span class="text-xl font-bold text-white">3</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-green-800">Juara III</h4>
+                                        <p class="text-sm text-green-600">Medali + Hadiah</p>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-900">Rp 500.000</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <ul class="text-green-800/90 space-y-2 text-center mt-4">
-                        <li>Medali Emas</li>
-                        <li>Sertifikat Juara</li>
-                        <li>Trophy</li>
-                        <li>Merchandise Exclusive</li>
-                    </ul>
-                </div>
-                <!-- Second Runner Up (3) -->
-                <div class="flex flex-col items-center min-h-[420px] justify-between bg-white/90 rounded-2xl p-8 shadow-lg transition hover:-translate-y-2 hover:shadow-2xl">
-                    <div class="flex flex-col items-center w-full">
-                        <div class="w-16 h-16 bg-yellow-900/80 rounded-full flex items-center justify-center border-4 border-white shadow mb-4">
-                            <span class="text-green-700 font-bold text-2xl">3</span>
-                        </div>
-                        <span class="text-4xl mb-2">🥉</span>
-                        <div class="text-2xl font-bold text-green-700 mb-1">Second Runner Up</div>
-                        <div class="flex items-end justify-center gap-1 mb-3">
-                            <span class="text-lg font-semibold text-green-700">Rp</span>
-                            <span class="text-3xl md:text-4xl font-extrabold text-green-900">500.000</span>
-                        </div>
-                    </div>
-                    <ul class="text-green-800/80 text-sm space-y-2 text-center mt-4">
-                        <li>Medali Perunggu</li>
-                        <li>Sertifikat Juara</li>
-                        <li>Merchandise Exclusive</li>
-                    </ul>
                 </div>
             </div>
 
-            <!-- Additional Prizes -->
-            <div class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow flex flex-col items-center">
-                    <div class="inline-block p-3 bg-green-100 rounded-full mb-4">
-                        <svg class="w-8 h-8 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
+            <!-- Additional Info -->
+            <div class="mt-16 space-y-6">
+                <!-- Prize Note -->
+                <div class="max-w-2xl mx-auto">
+                    <div class="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <p class="text-lg font-semibold text-green-800">Hadiah berupa uang dan medali</p>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-green-900 mb-2">Kategori Putra & Putri</h3>
-                    <p class="text-green-800/80">Hadiah yang sama untuk kategori putra dan putri</p>
                 </div>
-                <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 text-center shadow flex flex-col items-center">
-                    <div class="inline-block p-3 bg-green-100 rounded-full mb-4">
-                        <svg class="w-8 h-8 text-green-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-green-900 mb-2">Finisher Rewards</h3>
-                    <p class="text-green-800/80">Sertifikat eksklusif untuk 500 finisher pertama</p>
-                </div>
-            </div>
 
-            <!-- Prize Note -->
-            <div class="mt-12 text-center">
-                <div class="inline-block bg-green-100 rounded-full px-6 py-3">
-                    <p class="text-green-900 text-sm">
-                        * Semua pemenang akan diumumkan pada hari event setelah perlombaan selesai
-                    </p>
+                <!-- Finisher Note -->
+                <div class="max-w-2xl mx-auto">
+                    <div class="bg-gradient-to-r from-emerald-100 to-green-100 rounded-2xl p-6 shadow-lg">
+                        <div class="flex items-center justify-center space-x-4">
+                            <div class="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <p class="text-lg font-semibold text-green-800">Sertifikat eksklusif untuk 500 finisher pertama</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -133,7 +207,7 @@
                                 </svg>
                                 <div>
                                     <p class="font-semibold text-green-800">Tanggal Event</p>
-                                    <p class="text-green-700/80">10 Februari 2025</p>
+                                    <p class="text-green-700/80">4 Juli 2025</p>
                                 </div>
                             </li>
                             <li class="flex items-start">
@@ -143,7 +217,7 @@
                                 </svg>
                                 <div>
                                     <p class="font-semibold text-green-800">Lokasi</p>
-                                    <p class="text-green-700/80">Pandalungan Festival Area</p>
+                                    <p class="text-green-700/80">Alun-alun Jember</p>
                                 </div>
                             </li>
                             <li class="flex items-start">
@@ -161,7 +235,7 @@
                                 </svg>
                                 <div>
                                     <p class="font-semibold text-green-800">Jarak</p>
-                                    <p class="text-green-700/80">5KM dengan 3 water station</p>
+                                    <p class="text-green-700/80">5KM dengan 1 water station</p>
                                 </div>
                             </li>
                         </ul>

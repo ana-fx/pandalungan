@@ -13,13 +13,13 @@
             </div>
             <div class="flex flex-col items-end gap-2">
                 <span class="px-3 py-1 rounded-full text-xs font-bold
-                    @if($checkout->status === 'pending') bg-yellow-100 text-yellow-800
-                    @elseif($checkout->status === 'paid') bg-blue-100 text-blue-800
-                    @elseif($checkout->status === 'verified') bg-green-100 text-green-800
-                    @elseif($checkout->status === 'expired') bg-red-100 text-red-800
-                    @endif">
-                    Status: {{ ucfirst($checkout->status) }}
-            </span>
+                            @if($checkout->status === 'pending') bg-yellow-100 text-yellow-800
+                            @elseif($checkout->status === 'paid') bg-blue-100 text-blue-800
+                            @elseif($checkout->status === 'verified') bg-green-100 text-green-800
+                            @elseif($checkout->status === 'expired') bg-red-100 text-red-800
+                            @endif">
+                            Status: {{ ucfirst($checkout->status) }}
+                        </span>
             </div>
         </div>
         <div class="p-8 space-y-8">
@@ -79,21 +79,21 @@
             <!-- Instruksi Pembayaran & Upload -->
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="space-y-6">
-                    <!-- Bank Info -->
+            <!-- Bank Info -->
                     <div class="bg-white rounded-xl border shadow p-6">
-                        <div class="flex items-center mb-4">
-                            <img src="{{ asset('images/bank-jatim.png') }}" alt="Bank Jatim" class="h-8 mr-3">
-                            <span class="font-semibold text-lg">Bank Jatim</span>
-                        </div>
-                        <div class="space-y-2">
-                            <div class="flex items-center gap-2">
+                <div class="flex items-center mb-4">
+                    <img src="{{ asset('images/bank-jatim.png') }}" alt="Bank Jatim" class="h-8 mr-3">
+                    <span class="font-semibold text-lg">Bank Jatim</span>
+                </div>
+                <div class="space-y-2">
+                        <div class="flex items-center gap-2">
                                 <p class="text-xs text-gray-500">Nomor Rekening</p>
-                                <button onclick="copyToClipboard('0123456789')" class="ml-2 text-accent hover:text-accent/80 text-xs flex items-center gap-1">
+                                <button onclick="copyToClipboard('003286836')" class="ml-2 text-accent hover:text-accent/80 text-xs flex items-center gap-1">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
                                     Salin
-                                </button>
+                            </button>
                             </div>
-                            <p class="font-mono text-lg font-bold">0123456789</p>
+                            <p class="font-mono text-lg font-bold">003286836</p>
                             <div>
                                 <p class="text-xs text-gray-500">Atas Nama</p>
                                 <p class="font-medium">PANDALUNGAN NIGHT RUN 2025</p>
@@ -122,52 +122,52 @@
                         </a>
                     </div>
                 </div>
-                <!-- Upload Bukti Pembayaran -->
+            <!-- Upload Bukti Pembayaran -->
                 <div class="bg-white rounded-xl border shadow p-6 flex flex-col gap-4">
                     <h4 class="font-semibold text-lg mb-2">Upload Bukti Pembayaran</h4>
-                    @if($checkout->payment_proof)
+                @if($checkout->payment_proof)
                         <div>
                             <p class="text-xs text-gray-500 mb-1">Bukti pembayaran yang sudah diupload:</p>
-                            <img src="{{ asset('storage/'.$checkout->payment_proof) }}" alt="Bukti Pembayaran" class="max-w-xs rounded shadow border">
-                        </div>
-                    @endif
-                    @if($checkout->status === 'pending' || $checkout->status === 'waiting')
-                        <form action="{{ route('checkout.upload-payment', $checkout->unique_id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
-                            @csrf
-                            <div>
+                        <img src="{{ asset('storage/'.$checkout->payment_proof) }}" alt="Bukti Pembayaran" class="max-w-xs rounded shadow border">
+                    </div>
+                @endif
+                @if($checkout->status === 'pending' || $checkout->status === 'waiting')
+                    <form action="{{ route('checkout.upload-payment', $checkout->unique_id) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                        @csrf
+                        <div>
                                 <label class="block text-xs font-medium text-gray-500 mb-1">
-                                    Pilih File Bukti Pembayaran
-                                </label>
-                                <input type="file" name="payment_proof" accept="image/*" {{ $checkout->payment_proof ? '' : 'required' }}
-                                    class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-white hover:file:bg-accent/90">
+                                Pilih File Bukti Pembayaran
+                            </label>
+                            <input type="file" name="payment_proof" accept="image/*" {{ $checkout->payment_proof ? '' : 'required' }}
+                                class="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-accent file:text-white hover:file:bg-accent/90">
                                 <p class="mt-1 text-xs text-gray-400">Format: JPG, PNG (Max. 2MB)</p>
-                                @error('payment_proof')
+                            @error('payment_proof')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
-                                @enderror
-                            </div>
-                            <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-accent hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">
-                                {{ $checkout->payment_proof ? 'Ganti Bukti Pembayaran' : 'Upload Bukti Pembayaran' }}
-                            </button>
-                        </form>
-                    @endif
-                </div>
+                            @enderror
+                        </div>
+                        <button type="submit" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-accent hover:bg-accent/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent">
+                            {{ $checkout->payment_proof ? 'Ganti Bukti Pembayaran' : 'Upload Bukti Pembayaran' }}
+                        </button>
+                    </form>
+                @endif
+            </div>
             </div>
             <!-- Penting! -->
             <div class="mt-8 p-5 bg-yellow-50 rounded-xl flex items-start gap-3 shadow">
-                <div class="flex-shrink-0">
+                    <div class="flex-shrink-0">
                     <svg class="h-6 w-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                    </svg>
-                </div>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        </svg>
+                    </div>
                 <div>
                     <h3 class="text-sm font-bold text-yellow-800">Penting!</h3>
                     <ul class="list-disc list-inside text-sm text-yellow-700 mt-1">
-                        <li>Pembayaran harus dilakukan dalam waktu 24 jam</li>
-                        <li>Pendaftaran akan dibatalkan otomatis jika pembayaran tidak dilakukan</li>
-                        <li>Simpan nomor order Anda: <span class="font-medium">{{ $checkout->order_number }}</span></li>
-                    </ul>
-                </div>
-            </div>
+                                <li>Pembayaran harus dilakukan dalam waktu 24 jam</li>
+                                <li>Pendaftaran akan dibatalkan otomatis jika pembayaran tidak dilakukan</li>
+                                <li>Simpan nomor order Anda: <span class="font-medium">{{ $checkout->order_number }}</span></li>
+                            </ul>
+                        </div>
+                    </div>
             <!-- Aksi -->
             <div class="mt-8 flex justify-between items-center">
                 <a href="{{ route('home') }}" class="text-gray-600 hover:text-gray-800 flex items-center gap-1">
@@ -175,13 +175,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
                     </svg>
                     Kembali
-                </a>
-                <button onclick="window.print()" class="flex items-center px-4 py-2 bg-accent text-white rounded hover:bg-accent/90 transition">
-                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
-                    </svg>
-                    Cetak Halaman
-                </button>
+            </a>
+            <button onclick="window.print()" class="flex items-center px-4 py-2 bg-accent text-white rounded hover:bg-accent/90 transition">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                </svg>
+                Cetak Halaman
+            </button>
             </div>
         </div>
     </div>

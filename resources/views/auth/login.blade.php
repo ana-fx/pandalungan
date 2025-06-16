@@ -32,33 +32,33 @@
             <!-- Right: Login Form -->
             <div class="w-full md:w-1/2 flex flex-col justify-center p-8 md:p-12">
                 <h2 class="text-2xl font-bold text-green-800 mb-6 text-center md:text-left">Login Admin</h2>
-                <!-- Session Status -->
-                <x-auth-session-status class="mb-4" :status="session('status')" />
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
                 <form method="POST" action="{{ route('login') }}" class="space-y-6">
-                    @csrf
-                    <!-- Email Address -->
-                    <div>
-                        <x-input-label for="email" :value="__('Email')" />
+        @csrf
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
                         <x-text-input id="email" class="block mt-1 w-full rounded-lg border-green-300 focus:border-green-500 focus:ring-green-500 shadow-sm" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
-                    <!-- Password -->
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+        <!-- Password -->
                     <div>
-                        <x-input-label for="password" :value="__('Password')" />
+            <x-input-label for="password" :value="__('Password')" />
                         <x-text-input id="password" class="block mt-1 w-full rounded-lg border-green-300 focus:border-green-500 focus:ring-green-500 shadow-sm" type="password" name="password" required autocomplete="current-password" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
-                    <!-- Remember Me -->
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+        <!-- Remember Me -->
                     <div class="flex items-center justify-between">
-                        <label for="remember_me" class="inline-flex items-center">
+            <label for="remember_me" class="inline-flex items-center">
                             <input id="remember_me" type="checkbox" class="rounded border-green-300 text-green-600 shadow-sm focus:ring-green-500" name="remember">
                             <span class="ml-2 text-sm text-green-700">{{ __('Remember me') }}</span>
-                        </label>
-                        @if (Route::has('password.request'))
+            </label>
+            @if (Route::has('password.request'))
                             <a class="underline text-sm text-green-700 hover:text-green-900" href="{{ route('password.request') }}">
-                                {{ __('Forgot your password?') }}
-                            </a>
-                        @endif
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
                     </div>
                     <div>
                         <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-full shadow-lg text-lg font-bold text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition">

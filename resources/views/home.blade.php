@@ -47,96 +47,96 @@
                         </button>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <!-- NIK -->
+                    <!-- NIK -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1">
                                 <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0-1.104-.896-2-2-2s-2 .896-2 2 .896 2 2 2 2-.896 2-2zm0 0c0 1.104.896 2 2 2s2-.896 2-2-.896-2-2-2-2 .896-2 2z"/></svg>
                                 NIK
                             </label>
-                            <input type="text" name="registrations[0][nik]" required pattern="\d{16}" minlength="16" maxlength="16" inputmode="numeric" autocomplete="off"
+                        <input type="text" name="registrations[0][nik]" required pattern="\d{16}" minlength="16" maxlength="16" inputmode="numeric" autocomplete="off"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Masukkan 16 digit NIK" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                        </div>
-                        <!-- Nama Lengkap -->
+                            placeholder="Masukkan 16 digit NIK" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <!-- Nama Lengkap -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Nama Lengkap</label>
-                            <input type="text" name="registrations[0][full_name]" required maxlength="255"
+                        <input type="text" name="registrations[0][full_name]" required maxlength="255"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Masukkan nama lengkap">
-                        </div>
-                        <!-- Email -->
+                            placeholder="Masukkan nama lengkap">
+                    </div>
+                    <!-- Email -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
-                            <input type="email" name="registrations[0][email]" required maxlength="255" autocomplete="email"
+                        <input type="email" name="registrations[0][email]" required maxlength="255" autocomplete="email"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Masukkan alamat email">
-                        </div>
-                        <!-- Nomor WhatsApp -->
+                            placeholder="Masukkan alamat email">
+                    </div>
+                    <!-- Nomor WhatsApp -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor WhatsApp</label>
-                            <input type="tel" name="registrations[0][whatsapp_number]" required pattern="\d{10,20}" minlength="10" maxlength="20" inputmode="numeric" autocomplete="off"
+                        <input type="tel" name="registrations[0][whatsapp_number]" required pattern="\d{10,20}" minlength="10" maxlength="20" inputmode="numeric" autocomplete="off"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Contoh: 081234567890" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                        </div>
-                        <!-- Alamat -->
+                            placeholder="Contoh: 081234567890" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <!-- Alamat -->
                         <div class="md:col-span-2">
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Alamat Lengkap</label>
                             <textarea name="registrations[0][address]" rows="2" required maxlength="500"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Masukkan alamat lengkap"></textarea>
-                        </div>
-                        <!-- Tanggal Lahir -->
+                            placeholder="Masukkan alamat lengkap"></textarea>
+                    </div>
+                    <!-- Tanggal Lahir -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Tanggal Lahir</label>
-                            <input type="date" name="registrations[0][date_of_birth]" required max="{{ date('Y-m-d') }}"
+                        <input type="date" name="registrations[0][date_of_birth]" required max="{{ date('Y-m-d') }}"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2">
-                        </div>
-                        <!-- Kota -->
+                    </div>
+                    <!-- Kota -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Kota</label>
-                            <input type="text" name="registrations[0][city]" required maxlength="255"
+                        <input type="text" name="registrations[0][city]" required maxlength="255"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Masukkan kota domisili">
-                        </div>
-                        <!-- Ukuran Jersey -->
+                            placeholder="Masukkan kota domisili">
+                    </div>
+                    <!-- Ukuran Jersey -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Ukuran Jersey</label>
-                            <select name="registrations[0][jersey_size]" required
+                        <select name="registrations[0][jersey_size]" required
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2">
-                                <option value="">Pilih ukuran jersey</option>
-                                <option value="XS">XS</option>
-                                <option value="S">S</option>
-                                <option value="M">M</option>
-                                <option value="L">L</option>
-                                <option value="XL">XL</option>
-                                <option value="XXL">XXL</option>
-                            </select>
-                        </div>
-                        <!-- Golongan Darah -->
+                            <option value="">Pilih ukuran jersey</option>
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <!-- Golongan Darah -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Golongan Darah</label>
-                            <select name="registrations[0][blood_type]" required
+                        <select name="registrations[0][blood_type]" required
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2">
-                                <option value="">Pilih golongan darah</option>
-                                <option value="A">A</option>
-                                <option value="B">B</option>
-                                <option value="AB">AB</option>
-                                <option value="O">O</option>
-                            </select>
-                        </div>
-                        <!-- Nomor Kontak Darurat -->
+                            <option value="">Pilih golongan darah</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                    <!-- Nomor Kontak Darurat -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Nomor Kontak Darurat</label>
-                            <input type="tel" name="registrations[0][emergency_contact_number]" required pattern="\d{10,20}" minlength="10" maxlength="20" inputmode="numeric" autocomplete="off"
+                        <input type="tel" name="registrations[0][emergency_contact_number]" required pattern="\d{10,20}" minlength="10" maxlength="20" inputmode="numeric" autocomplete="off"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Contoh: 081234567890" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
-                        </div>
-                        <!-- Riwayat Penyakit -->
+                            placeholder="Contoh: 081234567890" oninput="this.value=this.value.replace(/[^0-9]/g,'')">
+                    </div>
+                    <!-- Riwayat Penyakit -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Riwayat Penyakit <span class="text-gray-400 font-normal">(opsional)</span></label>
                             <textarea name="registrations[0][medical_conditions]" rows="2" maxlength="255"
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2"
-                                placeholder="Masukkan riwayat penyakit (opsional)"></textarea>
+                            placeholder="Masukkan riwayat penyakit (opsional)"></textarea>
                         </div>
                     </div>
                 </div>
@@ -145,12 +145,12 @@
             <!-- Terms and Conditions -->
             <div class="mt-8 space-y-4 bg-green-50 border border-green-200 rounded-xl p-6">
                 <div class="flex items-start gap-3">
-                    <input id="terms" name="terms" type="checkbox" required
+                        <input id="terms" name="terms" type="checkbox" required
                         class="h-5 w-5 text-green-600 focus:ring-green-500 border-gray-300 rounded">
                     <label for="terms" class="font-medium text-gray-700 select-none">Saya menyetujui <a href="#" onclick="document.getElementById('termsModal').classList.remove('hidden');return false;" class="text-green-700 underline hover:text-green-900">syarat dan ketentuan</a> yang berlaku</label>
                 </div>
                 <div class="flex items-start gap-3">
-                    <input id="data_confirmation" name="data_confirmation" type="checkbox" required
+                        <input id="data_confirmation" name="data_confirmation" type="checkbox" required
                         class="h-5 w-5 text-green-600 focus:ring-green-500 border-gray-300 rounded">
                     <label for="data_confirmation" class="font-medium text-gray-700 select-none">Data yang saya masukkan adalah benar dan dapat dipertanggungjawabkan</label>
                 </div>
@@ -195,7 +195,7 @@
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/></svg></span>Minimal berusia 17 tahun pada hari pelaksanaan</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/></svg></span>Dalam kondisi sehat dan fit untuk berlari</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10"/></svg></span>Memiliki identitas yang valid</li>
-                </ul>
+            </ul>
             </div>
             <!-- Ketentuan Event -->
             <div>
@@ -208,7 +208,7 @@
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib mengikuti briefing sebelum event dimulai</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib mematuhi rute yang telah ditentukan</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib mematuhi protokol kesehatan yang berlaku</li>
-                </ul>
+            </ul>
             </div>
             <!-- Tanggung Jawab dan Risiko -->
             <div>
@@ -220,7 +220,7 @@
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><polygon points="10,2 2,18 18,18"/></svg></span>Peserta bertanggung jawab atas kondisi kesehatan pribadi</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><polygon points="10,2 2,18 18,18"/></svg></span>Panitia tidak bertanggung jawab atas kehilangan barang pribadi</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><polygon points="10,2 2,18 18,18"/></svg></span>Peserta memahami risiko cedera yang mungkin terjadi</li>
-                </ul>
+            </ul>
             </div>
             <!-- Pembatalan dan Refund -->
             <div>
@@ -232,7 +232,7 @@
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="4" y="8" rx="2"/></svg></span>Tidak ada pengembalian biaya pendaftaran</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="4" y="8" rx="2"/></svg></span>Event dapat dibatalkan jika terjadi force majeure</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-red-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="4" y="8" rx="2"/></svg></span>Pendaftaran tidak dapat dialihkan ke orang lain</li>
-                </ul>
+            </ul>
             </div>
         </div>
         <div class="mt-8 flex justify-end">

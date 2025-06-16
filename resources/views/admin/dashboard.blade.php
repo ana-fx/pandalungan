@@ -225,8 +225,8 @@
                         </div>
                         <div>
                             {{ $checkouts->appends(request()->query())->links('vendor.pagination.tailwind') }}
-                        </div>
                     </div>
+                </div>
                 </div>
             </main>
         </div>
