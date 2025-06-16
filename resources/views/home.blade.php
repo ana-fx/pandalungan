@@ -104,12 +104,9 @@
                         <select name="registrations[0][jersey_size]" required
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2">
                             <option value="">Pilih ukuran jersey</option>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
                             <option value="M">M</option>
                             <option value="L">L</option>
                             <option value="XL">XL</option>
-                            <option value="XXL">XXL</option>
                         </select>
                     </div>
                     <!-- Golongan Darah -->

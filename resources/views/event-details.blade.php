@@ -254,7 +254,7 @@
                         <div class="space-y-5">
                             <div>
                                 <p class="font-semibold text-green-800 mb-2">Periode Pendaftaran:</p>
-                                <p class="text-green-700/80">1 - 30 Januari 2025</p>
+                                <p class="text-green-700/80">16 - 30 Juni 2025</p>
                             </div>
                             <div>
                                 <p class="font-semibold text-green-800 mb-2">Fasilitas:</p>
@@ -291,15 +291,15 @@
                         <div class="space-y-6">
                             <div class="text-center p-4 bg-green-100/60 rounded-lg">
                                 <div class="font-bold text-green-700 mb-2">Pendaftaran</div>
-                                <p class="text-green-800">1 - 30 Januari 2025</p>
+                                <p class="text-green-800">16 - 30 Juni 2025</p>
                             </div>
                             <div class="text-center p-4 bg-green-100/60 rounded-lg">
                                 <div class="font-bold text-green-700 mb-2">Race Pack Collection</div>
-                                <p class="text-green-800">5 Februari 2025</p>
+                                <p class="text-green-800">1 - 2 Juli 2025</p>
                             </div>
                             <div class="text-center p-4 bg-green-100/60 rounded-lg">
                                 <div class="font-bold text-green-700 mb-2">Hari Event</div>
-                                <p class="text-green-800">10 Februari 2025</p>
+                                <p class="text-green-800">4 Juli 2025</p>
                             </div>
                         </div>
                     </div>
