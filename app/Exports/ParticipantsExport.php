@@ -34,8 +34,13 @@ class ParticipantsExport implements FromCollection, WithHeadings
                 'Sumber Data' => 'Registrations',
             ];
         });
-        // Checkout participants
-        $checkoutParticipants = CheckoutParticipant::with('checkout')->get()->map(function($item) {
+
+        // Checkout participants - exclude soft-deleted checkouts
+        $checkoutParticipants = CheckoutParticipant::with(['checkout' => function($query) {
+            $query->withTrashed();
+        }])->get()->filter(function($item) {
+            return !$item->checkout->trashed();
+        })->map(function($item) {
             $bukti = $item->checkout && $item->checkout->payment_proof ? $item->checkout->payment_proof : '';
             $status = $item->checkout && $item->checkout->status ? $item->checkout->status : '';
             return [
@@ -55,6 +60,7 @@ class ParticipantsExport implements FromCollection, WithHeadings
                 'Sumber Data' => 'Checkout',
             ];
         });
+
         // Gabungkan
         return $registrations->concat($checkoutParticipants);
     }

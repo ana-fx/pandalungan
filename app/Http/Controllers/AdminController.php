@@ -122,4 +122,12 @@ class AdminController extends Controller
         }
         return redirect()->route('admin.orderDetail', $order_number)->with('success', 'Data order dan peserta berhasil diperbarui.');
     }
+
+    public function deleteOrder($order_number)
+    {
+        $checkout = Checkout::where('order_number', $order_number)->firstOrFail();
+        $checkout->delete();
+
+        return redirect()->route('admin.dashboard')->with('success', 'Order berhasil dihapus.');
+    }
 }

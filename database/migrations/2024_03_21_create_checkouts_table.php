@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('payment_deadline');
             $table->timestamp('paid_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('checkout_participants', function (Blueprint $table) {
