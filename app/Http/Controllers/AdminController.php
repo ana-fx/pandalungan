@@ -12,8 +12,36 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $checkouts = \App\Models\Checkout::with('participants')->latest()->paginate(10);
-        return view('admin.dashboard', compact('checkouts'));
+        $query = \App\Models\Checkout::with('participants');
+
+        if (request('search')) {
+            $searchTerm = request('search');
+            $query->where(function($q) use ($searchTerm) {
+                $q->where('order_number', 'like', "%{$searchTerm}%")
+                  ->orWhereHas('participants', function($q) use ($searchTerm) {
+                      $q->where('full_name', 'like', "%{$searchTerm}%")
+                        ->orWhere('whatsapp_number', 'like', "%{$searchTerm}%")
+                        ->orWhere('email', 'like', "%{$searchTerm}%");
+                  });
+            });
+        }
+
+        // Get all checkouts for statistics (unpaginated)
+        $allCheckouts = clone $query;
+
+        // Calculate statistics from all checkouts
+        $statistics = [
+            'total_participants' => $allCheckouts->where('status', 'paid')->count(),
+            'pending' => $allCheckouts->where('status', 'pending')->whereNull('payment_proof')->count(),
+            'waiting' => $allCheckouts->where('status', 'waiting')->whereNotNull('payment_proof')->count(),
+            'paid' => $allCheckouts->where('status', 'paid')->count(),
+            'total_income' => $allCheckouts->where('status', 'paid')->sum('total_amount'),
+        ];
+
+        // Get paginated results for the table
+        $checkouts = $query->latest()->paginate(10);
+
+        return view('admin.dashboard', compact('checkouts', 'statistics'));
     }
 
     public function show($id)

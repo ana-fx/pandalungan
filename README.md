@@ -166,3 +166,134 @@ Welcome to **Pandulungan** — a modern, robust, and user-friendly event registr
 
 ## 📄 License
 [MIT License](LICENSE.md)
+
+# Night Run 2025 - Admin Dashboard
+
+## 🚀 Recent Updates
+
+### Enhanced Admin Dashboard
+- **Improved Statistics Cards**
+  - Total Participants (Paid)
+  - Pending Registrations
+  - Waiting Verifications
+  - Paid & Verified
+  - Total Income
+
+### 🔍 Advanced Search Functionality
+- Search across multiple fields:
+  - Order Number
+  - Participant Name
+  - WhatsApp Number
+  - Email Address
+- Real-time search results
+- Reset search option
+- Maintains pagination
+
+### 💰 Payment Status Management
+- **Streamlined Status Flow**
+  1. Pending → Waiting (after payment proof upload)
+  2. Waiting → Paid (after admin verification)
+- Clear status indicators
+- Easy status updates
+
+### 📊 Improved Data Accuracy
+- Fixed pagination issues
+- Accurate total calculations
+- Consistent statistics across pages
+- Real-time updates
+
+### 🖼️ Enhanced Payment Proof Viewer
+- Modal view for payment proofs
+- Download functionality
+- Improved image display
+- Easy navigation
+
+## 🛠️ Technical Improvements
+
+### Backend
+- Optimized database queries
+- Separate statistics calculations
+- Improved search performance
+- Better error handling
+
+### Frontend
+- Responsive design
+- Modern UI components
+- Intuitive user interface
+- Smooth transitions
+
+## 🔐 Security Features
+- Admin authentication
+- Secure file uploads
+- Protected routes
+- Data validation
+
+## 📱 Responsive Design
+- Mobile-friendly interface
+- Adaptive layouts
+- Touch-friendly controls
+- Consistent experience across devices
+
+## 🎨 UI/UX Improvements
+- Clean, modern design
+- Intuitive navigation
+- Clear status indicators
+- User-friendly forms
+
+## 🚀 Performance Optimizations
+- Efficient data loading
+- Optimized image handling
+- Reduced server load
+- Faster page loads
+
+## 📈 Future Enhancements
+- [ ] Export functionality
+- [ ] Advanced filtering
+- [ ] Bulk actions
+- [ ] Detailed analytics
+- [ ] Custom reports
+
+## 🛠️ Installation
+
+1. Clone the repository
+```bash
+git clone [repository-url]
+```
+
+2. Install dependencies
+```bash
+composer install
+npm install
+```
+
+3. Set up environment
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+4. Run migrations
+```bash
+php artisan migrate
+```
+
+5. Start the server
+```bash
+php artisan serve
+```
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## 📞 Support
+
+For support, email [support@nightrun.com](mailto:support@nightrun.com) or create an issue in the repository.

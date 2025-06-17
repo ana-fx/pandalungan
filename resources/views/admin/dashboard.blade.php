@@ -65,31 +65,18 @@
                 @endif
 
                 <!-- Statistics Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
                     <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
                         <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                            <div class="p-3 rounded-full bg-purple-100 text-purple-600">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                 </svg>
                             </div>
                             <div class="ml-4">
                                 <h3 class="text-sm font-medium text-gray-500">Total Peserta</h3>
-                                <p class="text-2xl font-semibold text-gray-900">{{ $checkouts->total() }}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-green-100 text-green-600">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-500">Terverifikasi</h3>
-                                <p class="text-2xl font-semibold text-gray-900">{{ $checkouts->where('status', 'verified')->count() }}</p>
+                                <p class="text-2xl font-semibold text-gray-900">{{ $statistics['total_participants'] }}</p>
+                                <p class="text-xs text-gray-500 mt-1">Peserta yang sudah dibayar</p>
                             </div>
                         </div>
                     </div>
@@ -102,8 +89,39 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-500">Menunggu</h3>
-                                <p class="text-2xl font-semibold text-gray-900">{{ $checkouts->where('status', 'waiting')->count() }}</p>
+                                <h3 class="text-sm font-medium text-gray-500">Pending</h3>
+                                <p class="text-2xl font-semibold text-gray-900">{{ $statistics['pending'] }}</p>
+                                <p class="text-xs text-gray-500 mt-1">Belum upload bukti pembayaran</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-500">Waiting</h3>
+                                <p class="text-2xl font-semibold text-gray-900">{{ $statistics['waiting'] }}</p>
+                                <p class="text-xs text-gray-500 mt-1">Sudah upload bukti pembayaran</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white rounded-lg shadow-sm p-6 border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="text-sm font-medium text-gray-500">Paid</h3>
+                                <p class="text-2xl font-semibold text-gray-900">{{ $statistics['paid'] }}</p>
+                                <p class="text-xs text-gray-500 mt-1">Sudah diverifikasi admin</p>
                             </div>
                         </div>
                     </div>
@@ -117,7 +135,8 @@
                             </div>
                             <div class="ml-4">
                                 <h3 class="text-sm font-medium text-gray-500">Total Pendapatan</h3>
-                                <p class="text-2xl font-semibold text-gray-900">Rp {{ number_format($checkouts->sum('total_amount'), 0, ',', '.') }}</p>
+                                <p class="text-2xl font-semibold text-gray-900">Rp {{ number_format($statistics['total_income'], 0, ',', '.') }}</p>
+                                <p class="text-xs text-gray-500 mt-1">Dari peserta yang sudah dibayar</p>
                             </div>
                         </div>
                     </div>
@@ -127,9 +146,12 @@
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between p-6 border-b border-gray-200 gap-4">
                         <h3 class="text-lg font-semibold text-gray-900">Daftar Order</h3>
-                        <form method="GET" action="" class="flex items-center gap-2 w-full md:w-auto">
-                            <input type="text" name="q" value="{{ request('q') }}" placeholder="Cari order, nama, WhatsApp..." class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-sm" />
+                        <form method="GET" action="{{ route('admin.dashboard') }}" class="flex items-center gap-2 w-full md:w-auto">
+                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari order, nama, WhatsApp..." class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-sm" />
                             <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg font-bold shadow hover:bg-green-700 transition text-sm">Cari</button>
+                            @if(request('search'))
+                                <a href="{{ route('admin.dashboard') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-bold shadow hover:bg-gray-200 transition text-sm">Reset</a>
+                            @endif
                         </form>
                     </div>
                     <div class="overflow-x-auto">
@@ -234,9 +256,23 @@
 
     <!-- Modal Image Bukti Pembayaran -->
     <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-60 hidden items-center justify-center z-50">
-        <div class="bg-white p-4 rounded-lg max-w-lg w-full mx-4 flex flex-col items-center">
-            <img id="modalImage" src="" alt="Bukti Pembayaran" class="max-w-full max-h-[70vh] rounded shadow border mb-4">
-            <button onclick="closeImageModal()" class="px-4 py-2 bg-accent text-white rounded hover:bg-accent/90">Tutup</button>
+        <div class="relative">
+            <button onclick="closeImageModal()" class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <div class="bg-white p-4 rounded-lg max-w-lg w-full mx-4 flex flex-col items-center">
+                <img id="modalImage" src="" alt="Bukti Pembayaran" class="max-w-full max-h-[70vh] rounded shadow border mb-4">
+                <div class="flex flex-col items-center gap-4">
+                    <a id="downloadButton" href="" download class="text-blue-600 hover:text-blue-800 transition flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                        </svg>
+                        Download Bukti Pembayaran
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -286,6 +322,7 @@
 
         function showImageModal(url) {
             document.getElementById('modalImage').src = url;
+            document.getElementById('downloadButton').href = url;
             document.getElementById('imageModal').classList.remove('hidden');
             document.getElementById('imageModal').classList.add('flex');
         }
