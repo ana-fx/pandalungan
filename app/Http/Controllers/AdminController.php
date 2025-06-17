@@ -7,41 +7,59 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use App\Exports\ParticipantsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Checkout;
+use App\Models\CheckoutParticipant;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
-        $query = \App\Models\Checkout::with('participants');
+        // Calculate global totals without search filter
+        $globalTotals = [
+            'total_participants' => CheckoutParticipant::whereHas('checkout', function($query) {
+                $query->whereIn('status', ['paid', 'verified']);
+            })->count(),
+            'total_income' => Checkout::whereIn('status', ['paid', 'verified'])->sum('total_amount'),
+            'pending' => Checkout::where('status', 'pending')->count(),
+            'waiting' => Checkout::where('status', 'waiting')->count(),
+            'paid' => Checkout::whereIn('status', ['paid', 'verified'])->count(),
+            'expired' => Checkout::where('status', 'expired')->count(),
+        ];
 
-        if (request('search')) {
-            $searchTerm = request('search');
+        // Apply search filter only to the paginated results
+        $query = Checkout::with(['participants' => function($query) {
+            $query->orderBy('created_at', 'desc');
+        }]);
+
+        if ($request->has('search') && !empty($request->search)) {
+            $searchTerm = $request->search;
             $query->where(function($q) use ($searchTerm) {
+                // Search in checkout fields
                 $q->where('order_number', 'like', "%{$searchTerm}%")
-                  ->orWhereHas('participants', function($q) use ($searchTerm) {
-                      $q->where('full_name', 'like', "%{$searchTerm}%")
-                        ->orWhere('whatsapp_number', 'like', "%{$searchTerm}%")
-                        ->orWhere('email', 'like', "%{$searchTerm}%");
-                  });
+                    ->orWhere('status', 'like', "%{$searchTerm}%")
+                    ->orWhere('total_amount', 'like', "%{$searchTerm}%")
+                    // Search in participants through the relationship
+                    ->orWhereHas('participants', function($q) use ($searchTerm) {
+                        $q->where(function($subQ) use ($searchTerm) {
+                            $subQ->where('full_name', 'like', "%{$searchTerm}%")
+                                ->orWhere('whatsapp_number', 'like', "%{$searchTerm}%")
+                                ->orWhere('email', 'like', "%{$searchTerm}%")
+                                ->orWhere('nik', 'like', "%{$searchTerm}%")
+                                ->orWhere('city', 'like', "%{$searchTerm}%")
+                                ->orWhere('jersey_size', 'like', "%{$searchTerm}%");
+                        });
+                    });
             });
         }
 
-        // Get all checkouts for statistics (unpaginated)
-        $allCheckouts = clone $query;
+        $checkouts = $query->orderBy('created_at', 'desc')
+            ->paginate(10)
+            ->withQueryString();
 
-        // Calculate statistics from all checkouts
-        $statistics = [
-            'total_participants' => $allCheckouts->where('status', 'paid')->count(),
-            'pending' => $allCheckouts->where('status', 'pending')->whereNull('payment_proof')->count(),
-            'waiting' => $allCheckouts->where('status', 'waiting')->whereNotNull('payment_proof')->count(),
-            'paid' => $allCheckouts->where('status', 'paid')->count(),
-            'total_income' => $allCheckouts->where('status', 'paid')->sum('total_amount'),
-        ];
-
-        // Get paginated results for the table
-        $checkouts = $query->latest()->paginate(10);
-
-        return view('admin.dashboard', compact('checkouts', 'statistics'));
+        return view('admin.dashboard', [
+            'checkouts' => $checkouts,
+            'totals' => $globalTotals
+        ]);
     }
 
     public function show($id)

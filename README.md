@@ -1,10 +1,149 @@
 # Pandulungan - Night Run Event Registration System 🏃‍♂️🏃‍♀️
 
+```
+  _____                    _       _             
+ |  __ \                  | |     | |            
+ | |__) |__ _ __ _   _  __| |_   _| |_ _   _    
+ |  ___/ _ \ '__| | | |/ _` | | | | __| | | |   
+ | |  |  __/ |  | |_| | (_| | |_| | |_| |_| |   
+ |_|   \___|_|   \__,_|\__,_|\__,_|\__|\__, |   
+                                        __/ |   
+                                       |___/    
+```
+
 Welcome to **Pandulungan** — a modern, robust, and user-friendly event registration platform built for the Night Run 2025! This system is designed to make mass registration, payment, and admin management a breeze, whether you're a participant or an event organizer.
 
 ---
 
 ## 🌟 What's New (Latest Updates)
+
+### 🎨 Dashboard Design Evolution
+```
+   ╭─────────────────╮
+   │  New Design!    │
+   │  ┌─────────┐   │
+   │  │  Cards  │   │
+   │  └─────────┘   │
+   ╰─────────────────╯
+```
+- **Visual Hierarchy Enhancement:**
+  - Elegant decorative elements in top cards
+  - Color-coded status indicators
+  - Improved card layout with 2-row structure
+  - Subtle corner accents for visual interest
+  - Modern shadow and border effects
+
+### 📊 Smart Analytics Dashboard
+```
+   📈  Real-time Stats
+   ┌──────────────┐
+   │ Participants │
+   │    Income    │
+   │    Status    │
+   └──────────────┘
+```
+- **Enhanced Statistics Display:**
+  - Prominent total participants counter (green theme)
+  - Eye-catching total income display (red theme)
+  - Real-time status tracking
+  - Global statistics independent of search
+  - Optimized data visualization
+
+### 🔍 Intelligent Search System
+```
+   🔎  Search
+   ┌──────────────┐
+   │  Name        │
+   │  Status      │
+   │  Order       │
+   └──────────────┘
+```
+- **Multi-dimensional Search:**
+  - Cross-field search capabilities
+  - Real-time filtering
+  - Status-based filtering
+  - Participant detail search
+  - Order information search
+
+### 🎯 Status Management
+```
+   ⚡  Status Flow
+   ┌──────────────┐
+   │ Pending  →   │
+   │ Waiting  →   │
+   │ Paid         │
+   └──────────────┘
+```
+- **Streamlined Status Control:**
+  - Visual status indicators
+  - One-click status updates
+  - Color-coded status badges
+  - Real-time status changes
+  - Status history tracking
+
+### 💫 UI/UX Improvements
+```
+   ✨  Design
+   ┌──────────────┐
+   │  Modern UI   │
+   │  Smooth UX   │
+   │  Responsive  │
+   └──────────────┘
+```
+- **Modern Interface Elements:**
+  - Decorative corner accents
+  - Smooth hover effects
+  - Responsive card layouts
+  - Improved spacing and alignment
+  - Enhanced visual feedback
+
+### 📱 Mobile Optimization
+```
+   📱  Mobile First
+   ┌──────────────┐
+   │  Responsive  │
+   │  Touch UI    │
+   │  Fast Load   │
+   └──────────────┘
+```
+- **Responsive Design:**
+  - Fluid card layouts
+  - Touch-friendly interfaces
+  - Optimized for all screen sizes
+  - Improved mobile navigation
+  - Better mobile data display
+
+### 🔐 Security & Performance
+```
+   🛡️  Security
+   ┌──────────────┐
+   │  Protected   │
+   │  Optimized   │
+   │  Secure      │
+   └──────────────┘
+```
+- **Enhanced System Stability:**
+  - Optimized database queries
+  - Improved error handling
+  - Better data validation
+  - Enhanced security measures
+  - Faster page loading
+
+### 📈 Business Intelligence
+```
+   📊  Analytics
+   ┌──────────────┐
+   │  Tracking    │
+   │  Monitoring  │
+   │  Reports     │
+   └──────────────┘
+```
+- **Advanced Analytics:**
+  - Real-time participant tracking
+  - Revenue monitoring
+  - Status distribution analysis
+  - Payment verification system
+  - Export capabilities
 
 ### WhatsApp Integration & Notifications
 - **Fonnte Integration:**
@@ -166,134 +305,3 @@ Welcome to **Pandulungan** — a modern, robust, and user-friendly event registr
 
 ## 📄 License
 [MIT License](LICENSE.md)
-
-# Night Run 2025 - Admin Dashboard
-
-## 🚀 Recent Updates
-
-### Enhanced Admin Dashboard
-- **Improved Statistics Cards**
-  - Total Participants (Paid)
-  - Pending Registrations
-  - Waiting Verifications
-  - Paid & Verified
-  - Total Income
-
-### 🔍 Advanced Search Functionality
-- Search across multiple fields:
-  - Order Number
-  - Participant Name
-  - WhatsApp Number
-  - Email Address
-- Real-time search results
-- Reset search option
-- Maintains pagination
-
-### 💰 Payment Status Management
-- **Streamlined Status Flow**
-  1. Pending → Waiting (after payment proof upload)
-  2. Waiting → Paid (after admin verification)
-- Clear status indicators
-- Easy status updates
-
-### 📊 Improved Data Accuracy
-- Fixed pagination issues
-- Accurate total calculations
-- Consistent statistics across pages
-- Real-time updates
-
-### 🖼️ Enhanced Payment Proof Viewer
-- Modal view for payment proofs
-- Download functionality
-- Improved image display
-- Easy navigation
-
-## 🛠️ Technical Improvements
-
-### Backend
-- Optimized database queries
-- Separate statistics calculations
-- Improved search performance
-- Better error handling
-
-### Frontend
-- Responsive design
-- Modern UI components
-- Intuitive user interface
-- Smooth transitions
-
-## 🔐 Security Features
-- Admin authentication
-- Secure file uploads
-- Protected routes
-- Data validation
-
-## 📱 Responsive Design
-- Mobile-friendly interface
-- Adaptive layouts
-- Touch-friendly controls
-- Consistent experience across devices
-
-## 🎨 UI/UX Improvements
-- Clean, modern design
-- Intuitive navigation
-- Clear status indicators
-- User-friendly forms
-
-## 🚀 Performance Optimizations
-- Efficient data loading
-- Optimized image handling
-- Reduced server load
-- Faster page loads
-
-## 📈 Future Enhancements
-- [ ] Export functionality
-- [ ] Advanced filtering
-- [ ] Bulk actions
-- [ ] Detailed analytics
-- [ ] Custom reports
-
-## 🛠️ Installation
-
-1. Clone the repository
-```bash
-git clone [repository-url]
-```
-
-2. Install dependencies
-```bash
-composer install
-npm install
-```
-
-3. Set up environment
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-4. Run migrations
-```bash
-php artisan migrate
-```
-
-5. Start the server
-```bash
-php artisan serve
-```
-
-## 📝 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👥 Contributing
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
-
-## 📞 Support
-
-For support, email [support@nightrun.com](mailto:support@nightrun.com) or create an issue in the repository.
