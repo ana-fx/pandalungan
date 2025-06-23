@@ -101,14 +101,14 @@
                     <!-- Ukuran Jersey -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Ukuran Jersey</label>
-                        <select name="registrations[0][jersey_size]" required
+                            <select name="registrations[0][jersey_size]" required
                                 class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2">
-                            <option value="">Pilih ukuran jersey</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                    </div>
+                                <option value="">Pilih ukuran jersey</option>
+                                <option value="M">M (Medium)</option>
+                                <option value="L">L (Large)</option>
+                                <option value="XL">XL (Extra Large)</option>
+                            </select>
+                        </div>
                     <!-- Golongan Darah -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Golongan Darah</label>
