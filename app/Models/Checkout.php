@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Checkout extends Model
 {
@@ -36,6 +37,23 @@ class Checkout extends Model
                 $model->unique_id = Str::uuid();
             }
         });
+
+        static::saving(function ($model) {
+            // Ensure order_number is unique
+            if ($model->isDirty('order_number')) {
+                $exists = self::where('order_number', $model->order_number)
+                    ->where('id', '!=', $model->id ?? 0)
+                    ->exists();
+
+                if ($exists) {
+                    throw new \Illuminate\Database\QueryException(
+                        'Order number already exists',
+                        [],
+                        new \Exception('duplicate key value violates unique constraint')
+                    );
+                }
+            }
+        });
     }
 
     public function participants(): HasMany
@@ -46,17 +64,15 @@ class Checkout extends Model
     public static function generateOrderNumber(): string
     {
         $prefix = 'NR' . date('Ymd');
-        $lastOrder = self::where('order_number', 'like', $prefix . '%')
-            ->orderBy('order_number', 'desc')
-            ->first();
 
-        if (!$lastOrder) {
-            $number = '0001';
-        } else {
-            $lastNumber = intval(substr($lastOrder->order_number, -4));
-            $number = str_pad($lastNumber + 1, 4, '0', STR_PAD_LEFT);
-        }
+        // Use microtime to ensure uniqueness
+        $microtime = microtime(true);
+        $timestamp = (int)($microtime * 1000000); // Convert to microseconds
+        $random = mt_rand(100, 999); // Add some randomness
 
-        return $prefix . $number;
+        // Get the last 4 digits from timestamp + random
+        $uniquePart = substr($timestamp . $random, -4);
+
+        return $prefix . $uniquePart;
     }
 }

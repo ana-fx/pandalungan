@@ -99,6 +99,7 @@ class RegistrationController extends Controller
             DB::beginTransaction();
             $totalParticipants = count($validatedData['registrations']);
             $totalAmount = 150000 * $totalParticipants;
+
             $checkout = \App\Models\Checkout::create([
                 'order_number' => \App\Models\Checkout::generateOrderNumber(),
                 'total_amount' => $totalAmount,
@@ -106,13 +107,16 @@ class RegistrationController extends Controller
                 'status' => 'pending',
                 'payment_deadline' => now()->addHours(24),
             ]);
-            Log::info('Checkout berhasil dibuat', ['checkout' => $checkout]);
+
+            // Create participants
             foreach ($validatedData['registrations'] as $participant) {
                 $participant['checkout_id'] = $checkout->id;
                 $checkoutParticipant = \App\Models\CheckoutParticipant::create($participant);
                 Log::info('Peserta berhasil dibuat', ['checkout_participant' => $checkoutParticipant]);
             }
+
             DB::commit();
+            Log::info('Checkout berhasil dibuat', ['checkout' => $checkout]);
             Log::info('Transaksi commit, redirect ke checkout', ['unique_id' => $checkout->unique_id]);
 
             // --- Kirim WhatsApp via Queue ke semua peserta ---
