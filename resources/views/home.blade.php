@@ -16,6 +16,16 @@
             </button>
         </div>
 
+        <!-- Informasi Jersey All Size -->
+        <div class="mb-6 flex items-center gap-3 p-4 bg-blue-50 border border-blue-200 text-blue-800 rounded-xl shadow">
+            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <div>
+                <span class="font-semibold">Informasi Jersey:</span> Untuk periode pendaftaran saat ini, semua peserta akan mendapatkan jersey dengan ukuran All Size yang nyaman dan fleksibel untuk digunakan.
+            </div>
+        </div>
+
         @if(session('success'))
             <div class="mb-6 flex items-center gap-3 p-4 bg-green-100 border border-green-400 text-green-800 rounded-xl shadow">
                 <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
@@ -99,16 +109,9 @@
                             placeholder="Masukkan kota domisili">
                     </div>
                     <!-- Ukuran Jersey -->
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Ukuran Jersey</label>
-                            <select name="registrations[0][jersey_size]" required
-                                class="mt-1 block w-full rounded-lg border-gray-300 shadow focus:border-green-500 focus:ring-green-500 text-base px-4 py-2">
-                                <option value="">Pilih ukuran jersey</option>
-                                <option value="M">M (Medium)</option>
-                                <option value="L">L (Large)</option>
-                                <option value="XL">XL (Extra Large)</option>
-                            </select>
-                        </div>
+                    <div class="hidden">
+                        <input type="hidden" name="registrations[0][jersey_size]" value="">
+                    </div>
                     <!-- Golongan Darah -->
                         <div>
                             <label class="block text-sm font-semibold text-gray-700 mb-1">Golongan Darah</label>
@@ -201,7 +204,7 @@
                     <h4 class="font-bold text-green-700">2. Ketentuan Event</h4>
                 </div>
                 <ul class="pl-6 space-y-1">
-                    <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib menggunakan jersey yang telah disediakan</li>
+                    <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib menggunakan jersey yang telah disediakan (All Size)</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib mengikuti briefing sebelum event dimulai</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib mematuhi rute yang telah ditentukan</li>
                     <li class="flex items-start gap-2"><span class="mt-1"><svg class="w-4 h-4 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><rect width="20" height="20" rx="5"/></svg></span>Peserta wajib mematuhi protokol kesehatan yang berlaku</li>

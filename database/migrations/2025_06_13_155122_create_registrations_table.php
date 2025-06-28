@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('address');
             $table->date('date_of_birth');
             $table->string('city');
-            $table->enum('jersey_size', ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL']);
+            $table->enum('jersey_size', ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL', 'All Size']);
             $table->enum('blood_type', ['A', 'B', 'AB', 'O'])->nullable();
             $table->string('emergency_contact_number');
             $table->text('medical_conditions')->nullable();

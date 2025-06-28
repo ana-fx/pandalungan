@@ -80,7 +80,7 @@ class RegistrationController extends Controller
             'registrations.*.address' => ['required', 'string'],
             'registrations.*.date_of_birth' => ['required', 'date'],
             'registrations.*.city' => ['required', 'string', 'max:255'],
-            'registrations.*.jersey_size' => ['required', 'string', 'in:XS,S,M,L,XL,XXL'],
+            'registrations.*.jersey_size' => ['nullable', 'string', 'in:XS,S,M,L,XL,XXL,All Size'],
             'registrations.*.blood_type' => ['nullable', 'string', 'in:A,B,AB,O'],
             'registrations.*.emergency_contact_number' => ['required', 'string', 'max:20'],
             'registrations.*.medical_conditions' => ['nullable', 'string'],
@@ -110,6 +110,10 @@ class RegistrationController extends Controller
 
             // Create participants
             foreach ($validatedData['registrations'] as $participant) {
+                // Set jersey_size to "All Size" if empty
+                if (empty($participant['jersey_size'])) {
+                    $participant['jersey_size'] = 'All Size';
+                }
                 $participant['checkout_id'] = $checkout->id;
                 $checkoutParticipant = \App\Models\CheckoutParticipant::create($participant);
                 Log::info('Peserta berhasil dibuat', ['checkout_participant' => $checkoutParticipant]);
