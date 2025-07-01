@@ -164,15 +164,91 @@
 
                 <!-- Orders Table -->
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
-                    <div class="flex flex-col md:flex-row md:items-center md:justify-between p-6 border-b border-gray-200 gap-4">
-                        <h3 class="text-lg font-semibold text-gray-900">Daftar Order</h3>
-                        <form method="GET" action="{{ route('admin.dashboard') }}" class="flex items-center gap-2 w-full md:w-auto">
-                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari order, nama, WhatsApp..." class="w-full md:w-64 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-sm" />
-                            <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg font-bold shadow hover:bg-green-700 transition text-sm">Cari</button>
-                            @if(request('search'))
-                                <a href="{{ route('admin.dashboard') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-bold shadow hover:bg-gray-200 transition text-sm">Reset</a>
-                            @endif
-                        </form>
+                    <div class="p-6 border-b border-gray-200">
+                        <div class="flex flex-col gap-6">
+                            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Daftar Order</h3>
+                                <button onclick="toggleAdvancedSearch()" class="text-green-600 hover:text-green-800 font-medium flex items-center gap-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                                    </svg>
+                                    Filter & Pencarian Lanjutan
+                                </button>
+                            </div>
+
+                            <!-- Basic Search -->
+                            <form method="GET" action="{{ route('admin.dashboard') }}" class="flex flex-col md:flex-row gap-4" id="searchForm">
+                                <div class="flex-1">
+                                    <input type="text" name="search" value="{{ request('search') }}"
+                                        class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-green-500 focus:border-green-500 text-sm"
+                                        placeholder="Cari order, nama, email, NIK, WhatsApp, kota..." />
+                                </div>
+                                <div class="flex gap-2">
+                                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-lg font-bold shadow hover:bg-green-700 transition text-sm flex items-center gap-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                        </svg>
+                                        Cari
+                                    </button>
+                                    @if(request()->hasAny(['search', 'status', 'date_from', 'date_to', 'sort', 'direction']))
+                                        <a href="{{ route('admin.dashboard') }}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg font-bold shadow hover:bg-gray-200 transition text-sm flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                            </svg>
+                                            Reset
+                                        </a>
+                                    @endif
+                                </div>
+                            </form>
+
+                            <!-- Advanced Search (Hidden by default) -->
+                            <div id="advancedSearch" class="hidden">
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bg-gray-50 p-4 rounded-lg">
+                                    <!-- Status Filter -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                                        <select name="status" form="searchForm" class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">
+                                            <option value="">Semua Status</option>
+                                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
+                                            <option value="waiting" {{ request('status') == 'waiting' ? 'selected' : '' }}>Waiting</option>
+                                            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                                            <option value="verified" {{ request('status') == 'verified' ? 'selected' : '' }}>Verified</option>
+                                            <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Date Range -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Mulai</label>
+                                        <input type="date" name="date_from" form="searchForm" value="{{ request('date_from') }}"
+                                            class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Tanggal Akhir</label>
+                                        <input type="date" name="date_to" form="searchForm" value="{{ request('date_to') }}"
+                                            class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">
+                                    </div>
+
+                                    <!-- Sort Options -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Urutkan Berdasarkan</label>
+                                        <select name="sort" form="searchForm" class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">
+                                            <option value="created_at" {{ $currentSort == 'created_at' ? 'selected' : '' }}>Tanggal Dibuat</option>
+                                            <option value="order_number" {{ $currentSort == 'order_number' ? 'selected' : '' }}>Nomor Order</option>
+                                            <option value="total_amount" {{ $currentSort == 'total_amount' ? 'selected' : '' }}>Total Pembayaran</option>
+                                            <option value="status" {{ $currentSort == 'status' ? 'selected' : '' }}>Status</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Arah Urutan</label>
+                                        <select name="direction" form="searchForm" class="w-full rounded-lg border-gray-300 shadow-sm focus:ring-green-500 focus:border-green-500 text-sm">
+                                            <option value="desc" {{ $currentDirection == 'desc' ? 'selected' : '' }}>Terbaru ke Terlama</option>
+                                            <option value="asc" {{ $currentDirection == 'asc' ? 'selected' : '' }}>Terlama ke Terbaru</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -369,6 +445,11 @@
             setTimeout(() => {
                 toast.style.display = 'none';
             }, 2500);
+        }
+
+        function toggleAdvancedSearch() {
+            const advancedSearch = document.getElementById('advancedSearch');
+            advancedSearch.classList.toggle('hidden');
         }
     </script>
 </body>

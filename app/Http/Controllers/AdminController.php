@@ -26,11 +26,25 @@ class AdminController extends Controller
             'expired' => Checkout::where('status', 'expired')->count(),
         ];
 
-        // Apply search filter only to the paginated results
+        // Build query with search and filters
         $query = Checkout::with(['participants' => function($query) {
             $query->orderBy('created_at', 'desc');
         }]);
 
+        // Apply filters
+        if ($request->has('status') && !empty($request->status)) {
+            $query->where('status', $request->status);
+        }
+
+        if ($request->has('date_from') && !empty($request->date_from)) {
+            $query->whereDate('created_at', '>=', $request->date_from);
+        }
+
+        if ($request->has('date_to') && !empty($request->date_to)) {
+            $query->whereDate('created_at', '<=', $request->date_to);
+        }
+
+        // Apply search if provided
         if ($request->has('search') && !empty($request->search)) {
             $searchTerm = $request->search;
             $query->where(function($q) use ($searchTerm) {
@@ -46,19 +60,34 @@ class AdminController extends Controller
                                 ->orWhere('email', 'like', "%{$searchTerm}%")
                                 ->orWhere('nik', 'like', "%{$searchTerm}%")
                                 ->orWhere('city', 'like', "%{$searchTerm}%")
-                                ->orWhere('jersey_size', 'like', "%{$searchTerm}%");
+                                ->orWhere('jersey_size', 'like', "%{$searchTerm}%")
+                                ->orWhere('emergency_contact_number', 'like', "%{$searchTerm}%")
+                                ->orWhere('address', 'like', "%{$searchTerm}%");
                         });
                     });
             });
         }
 
-        $checkouts = $query->orderBy('created_at', 'desc')
-            ->paginate(10)
-            ->withQueryString();
+        // Apply sorting
+        $sortField = $request->get('sort', 'created_at');
+        $sortDirection = $request->get('direction', 'desc');
+        $allowedSortFields = ['created_at', 'order_number', 'total_amount', 'status'];
+
+        if (in_array($sortField, $allowedSortFields)) {
+            $query->orderBy($sortField, $sortDirection);
+        }
+
+        $checkouts = $query->paginate(10)->withQueryString();
+
+        // Get unique cities for filter dropdown
+        $cities = CheckoutParticipant::select('city')->distinct()->pluck('city');
 
         return view('admin.dashboard', [
             'checkouts' => $checkouts,
-            'totals' => $globalTotals
+            'totals' => $globalTotals,
+            'cities' => $cities,
+            'currentSort' => $sortField,
+            'currentDirection' => $sortDirection
         ]);
     }
 

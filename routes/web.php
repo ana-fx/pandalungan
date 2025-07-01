@@ -9,9 +9,7 @@ use App\Http\Controllers\RegistrationController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [RegistrationController::class, 'index'])->name('home');
 
 Route::get('/event-details', function () {
     return view('event-details');
