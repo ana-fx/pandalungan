@@ -18,7 +18,7 @@ class RegistrationController extends Controller
     {
         // Check total paid participants
         $totalPaidParticipants = \App\Models\CheckoutParticipant::whereHas('checkout', function($query) {
-            $query->whereIn('status', ['paid', 'verified']);
+            $query->where('status', 'paid');
         })->count();
 
         return view('home', [
@@ -80,7 +80,7 @@ class RegistrationController extends Controller
     {
         // Check if quota is reached
         $totalPaidParticipants = \App\Models\CheckoutParticipant::whereHas('checkout', function($query) {
-            $query->whereIn('status', ['paid', 'verified']);
+            $query->where('status', 'paid');
         })->count();
 
         if ($totalPaidParticipants >= 500) {

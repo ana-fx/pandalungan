@@ -76,9 +76,9 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-500">Total Peserta</h3>
+                                <h3 class="text-sm font-medium text-gray-500">Total Peserta Terdaftar</h3>
                                 <p class="text-2xl font-semibold text-gray-900">{{ $totals['total_participants'] }}</p>
-                                <p class="text-xs text-gray-500 mt-1">Peserta yang sudah dibayar</p>
+                                <p class="text-xs text-gray-500 mt-1">Peserta dengan status paid</p>
                             </div>
                         </div>
                     </div>
@@ -94,7 +94,7 @@
                             <div class="ml-4">
                                 <h3 class="text-sm font-medium text-gray-500">Total Pendapatan</h3>
                                 <p class="text-2xl font-semibold text-gray-900">Rp {{ number_format($totals['total_income'], 0, ',', '.') }}</p>
-                                <p class="text-xs text-gray-500 mt-1">Dari peserta yang sudah dibayar</p>
+                                <p class="text-xs text-gray-500 mt-1">Dari peserta dengan status paid</p>
                             </div>
                         </div>
                     </div>
@@ -108,9 +108,9 @@
                                 </svg>
                             </div>
                             <div class="ml-4">
-                                <h3 class="text-sm font-medium text-gray-500">Paid</h3>
+                                <h3 class="text-sm font-medium text-gray-500">Status Paid</h3>
                                 <p class="text-2xl font-semibold text-gray-900">{{ $totals['paid'] }}</p>
-                                <p class="text-xs text-gray-500 mt-1">Sudah diverifikasi admin</p>
+                                <p class="text-xs text-gray-500 mt-1">Jumlah order dengan status paid</p>
                             </div>
                         </div>
                     </div>

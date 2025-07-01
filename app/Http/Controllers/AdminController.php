@@ -17,13 +17,13 @@ class AdminController extends Controller
         // Calculate global totals without search filter
         $globalTotals = [
             'total_participants' => CheckoutParticipant::whereHas('checkout', function($query) {
-                $query->whereIn('status', ['paid', 'verified']);
+                $query->where('status', 'paid');
             })->count(),
-            'total_income' => Checkout::whereIn('status', ['paid', 'verified'])->sum('total_amount'),
+            'total_income' => Checkout::where('status', 'paid')->sum('total_amount'),
             'pending' => Checkout::where('status', 'pending')->count(),
             'waiting' => Checkout::where('status', 'waiting')->count(),
-            'paid' => Checkout::whereIn('status', ['paid', 'verified'])->count(),
-            'expired' => Checkout::where('status', 'expired')->count(),
+            'paid' => Checkout::where('status', 'paid')->count(),
+            'expired' => Checkout::where('status', 'expired')->count()
         ];
 
         // Build query with search and filters

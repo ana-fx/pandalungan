@@ -41,16 +41,6 @@
                 </div>
             </div>
 
-            <!-- Informasi Sisa Kuota -->
-            <div class="mb-6 flex items-center gap-3 p-4 bg-green-50 border border-green-200 text-green-800 rounded-xl shadow">
-                <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-                </svg>
-                <div>
-                    <span class="font-semibold">Sisa Kuota:</span> {{ 500 - $totalPaidParticipants }} dari 500 peserta
-                </div>
-            </div>
-
             @if(session('success'))
                 <div class="mb-6 flex items-center gap-3 p-4 bg-green-100 border border-green-400 text-green-800 rounded-xl shadow">
                     <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
