@@ -23,7 +23,7 @@ class RegistrationController extends Controller
 
         return view('home', [
             'totalPaidParticipants' => $totalPaidParticipants,
-            'quotaReached' => $totalPaidParticipants >= 500
+            'quotaReached' => $totalPaidParticipants >= 490
         ]);
     }
 
