@@ -7,16 +7,50 @@
     <div class="p-8">
         @if($quotaReached)
             <div class="text-center py-12">
-                <div class="bg-red-50 border-2 border-red-200 rounded-2xl p-8 max-w-2xl mx-auto">
+                <div class="bg-gradient-to-br from-green-50 to-emerald-50 border-2 border-green-200 rounded-2xl p-8 max-w-3xl mx-auto shadow-lg">
                     <div class="mb-6">
-                        <span class="inline-block p-3 bg-red-100 text-red-600 rounded-full">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+                        <span class="inline-block p-4 bg-green-100 text-green-600 rounded-full">
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                             </svg>
                         </span>
                     </div>
-                    <h2 class="text-2xl font-bold text-red-800 mb-3">Kuota Pendaftaran Penuh</h2>
-                    <p class="text-red-600">Mohon maaf, kuota peserta Night Run 2025 telah mencapai batas maksimal (500 peserta). Pendaftaran sudah ditutup.</p>
+                    <h2 class="text-3xl font-bold text-green-800 mb-4">🎉 Pendaftaran Berhasil Ditutup!</h2>
+                    <div class="space-y-4 text-green-700">
+                        <p class="text-lg leading-relaxed">
+                            Terima kasih atas antusiasme yang luar biasa dari seluruh peserta Night Run 2025!
+                            Kuota pendaftaran telah terpenuhi dengan sempurna.
+                        </p>
+                        <div class="bg-white/60 rounded-xl p-6 border border-green-200">
+                            <h3 class="font-bold text-green-800 mb-3 flex items-center gap-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                Informasi Penting untuk Peserta Terdaftar:
+                            </h3>
+                            <ul class="space-y-2 text-sm">
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-500 mt-1">•</span>
+                                    <span>Pastikan pembayaran telah dilakukan dan diverifikasi oleh admin</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-500 mt-1">•</span>
+                                    <span>Simpan nomor order Anda untuk keperluan verifikasi</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-500 mt-1">•</span>
+                                    <span>Informasi detail event akan diumumkan melalui WhatsApp</span>
+                                </li>
+                                <li class="flex items-start gap-2">
+                                    <span class="text-green-500 mt-1">•</span>
+                                    <span>Jersey akan dibagikan pada hari pelaksanaan event</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="text-sm text-green-600">
+                            Untuk informasi lebih lanjut, silakan hubungi panitia melalui WhatsApp atau email yang telah terdaftar.
+                        </p>
+                    </div>
                 </div>
             </div>
         @else

@@ -23,7 +23,7 @@ class RegistrationController extends Controller
 
         return view('home', [
             'totalPaidParticipants' => $totalPaidParticipants,
-            'quotaReached' => $totalPaidParticipants >= 490
+            'quotaReached' => true
         ]);
     }
 
@@ -78,14 +78,8 @@ class RegistrationController extends Controller
 
     public function store(Request $request)
     {
-        // Check if quota is reached
-        $totalPaidParticipants = \App\Models\CheckoutParticipant::whereHas('checkout', function($query) {
-            $query->where('status', 'paid');
-        })->count();
-
-        if ($totalPaidParticipants >= 500) {
-            return back()->withErrors(['error' => 'Mohon maaf, kuota peserta Night Run 2025 telah mencapai batas maksimal (500 peserta). Pendaftaran sudah ditutup.']);
-        }
+        // Registration is closed
+        return back()->withErrors(['error' => 'Mohon maaf, pendaftaran Night Run 2025 sudah ditutup.']);
 
         Log::info('Memulai proses pendaftaran', ['request' => $request->all()]);
         $validatedData = $request->validate([
