@@ -167,7 +167,7 @@
                     <div class="p-6 border-b border-gray-200">
                         <div class="flex flex-col gap-6">
                             <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                                <h3 class="text-lg font-semibold text-gray-900">Daftar Order</h3>
+                        <h3 class="text-lg font-semibold text-gray-900">Daftar Order</h3>
                                 <button onclick="toggleAdvancedSearch()" class="text-green-600 hover:text-green-800 font-medium flex items-center gap-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -197,9 +197,9 @@
                                             </svg>
                                             Reset
                                         </a>
-                                    @endif
+                            @endif
                                 </div>
-                            </form>
+                        </form>
 
                             <!-- Advanced Search (Hidden by default) -->
                             <div id="advancedSearch" class="hidden">
